@@ -12,6 +12,8 @@ public class IntroGame : Game
 
     private Texture2D _pixel;
 
+    private float _xPosition = 100, _yPosition = 150;
+
     public IntroGame()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -51,7 +53,7 @@ public class IntroGame : Game
         GraphicsDevice.Clear(Color.Wheat);
 
         _spriteBatch.Begin();
-        Rectangle rect = new Rectangle(100, 150, 80, 50);
+        Rectangle rect = new Rectangle(_xPosition, _yPosition, 80, 50);
         _spriteBatch.Draw(_pixel, rect, Color.White);
         _spriteBatch.End();
 
