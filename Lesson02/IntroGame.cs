@@ -56,7 +56,7 @@ public class IntroGame : Game
         GraphicsDevice.Clear(Color.Wheat);
 
         _spriteBatch.Begin();
-        Rectangle rect = new Rectangle(_xPosition, _yPosition, _width, _height);
+        Rectangle rect = new Rectangle((int)_xPosition, (int)_yPosition, _width, _height);
         _spriteBatch.Draw(_pixel, rect, Color.White);
         _spriteBatch.End();
 
