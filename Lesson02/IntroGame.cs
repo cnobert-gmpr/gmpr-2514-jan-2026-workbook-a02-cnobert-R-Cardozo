@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Headers;
+using System.Security.Principal;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -55,7 +56,7 @@ public class IntroGame : Game
         GraphicsDevice.Clear(Color.Wheat);
 
         _spriteBatch.Begin();
-        Rectangle rect = new Rectangle(_xPosition, _yPosition, 80, 50);
+        Rectangle rect = new Rectangle(_xPosition, _yPosition, _width, _height);
         _spriteBatch.Draw(_pixel, rect, Color.White);
         _spriteBatch.End();
 
