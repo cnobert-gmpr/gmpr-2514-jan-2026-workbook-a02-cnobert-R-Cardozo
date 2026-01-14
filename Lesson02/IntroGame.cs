@@ -13,6 +13,8 @@ public class IntroGame : Game
     private Texture2D _pixel;
 
     private float _xPosition = 100, _yPosition = 150;
+    private float _speed = 150;
+    private int _width = 80, _height = 50;
 
     public IntroGame()
     {
