@@ -23,7 +23,19 @@ public class LoopGame : Game
 
     protected override void Initialize()
     {
-        
+        _position = new Vector2(50, 200);
+        _dimensions = new Vector2();
+        _count = 6;
+        _spacing = 10;
+
+        _rectangles = new Rectangle(_count);
+
+        for(int c = 0; c < _count; c++)
+        {
+            float x = _position.X + c * (_dimensions.X + _spacing);
+
+            _rectangles[c] = new Rectangle((int)x, (int)_position.Y, (int)_dimensions.X, (int)_dimensions.Y);
+        }
 
         base.Initialize();
     }
@@ -51,9 +63,10 @@ public class LoopGame : Game
 
         _spriteBatch.Begin();
 
-        Rectangle rect = new Rectangle(_position.X, _position.Y, _dimensions.X, _dimensions.Y);
-
-        _spriteBatch.Draw(_pixel, rect, Color.Aquamarine);
+        foreach(Rectangle r in _rectangles)
+        {
+            _spriteBatch.Draw(_pixel, r, Color.Aquamarine);
+        }
 
         _spriteBatch.End();
 
