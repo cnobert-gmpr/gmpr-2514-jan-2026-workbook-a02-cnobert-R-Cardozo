@@ -51,7 +51,7 @@ public class LoopGame : Game
 
     protected override void Update(GameTime gameTime)
     {
-        //_position.X += 60 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        // _position.X += 60 * (float)gameTime.ElapsedGameTime.TotalSeconds;
         base.Update(gameTime);
     }
 
