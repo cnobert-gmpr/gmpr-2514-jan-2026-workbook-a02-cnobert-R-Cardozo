@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,10 +8,14 @@ public class LoopGame : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+
     private Texture2D _pixel;
     private Vector2 _position, _dimensions;
+
     private int _count;
     private float _spacing;
+
+    private Rectangle[] _rectangles;
 
     public LoopGame()
     {
@@ -24,16 +27,15 @@ public class LoopGame : Game
     protected override void Initialize()
     {
         _position = new Vector2(50, 200);
-        _dimensions = new Vector2();
+        _dimensions = new Vector2(60, 40);
         _count = 6;
         _spacing = 10;
 
-        _rectangles = new Rectangle(_count);
+        _rectangles = new Rectangle[_count];
 
-        for(int c = 0; c < _count; c++)
+        for (int c = 0; c < _count; c++)
         {
             float x = _position.X + c * (_dimensions.X + _spacing);
-
             _rectangles[c] = new Rectangle((int)x, (int)_position.Y, (int)_dimensions.X, (int)_dimensions.Y);
         }
 
@@ -43,17 +45,13 @@ public class LoopGame : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        
+        _pixel = new Texture2D(GraphicsDevice, 1, 1);
+        _pixel.SetData(new[] { Color.White });
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
-        
-
+        //_position.X += 60 * (float)gameTime.ElapsedGameTime.TotalSeconds;
         base.Update(gameTime);
     }
 
@@ -63,7 +61,7 @@ public class LoopGame : Game
 
         _spriteBatch.Begin();
 
-        foreach(Rectangle r in _rectangles)
+        foreach (Rectangle r in _rectangles)
         {
             _spriteBatch.Draw(_pixel, r, Color.Aquamarine);
         }
