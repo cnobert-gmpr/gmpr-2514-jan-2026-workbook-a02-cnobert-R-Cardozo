@@ -37,7 +37,7 @@ public class DisplayingContentGame : Game
         _ship = Content.Load<Texture2D>("Beetle");
 
         Texture2D walkingSpriteSheet = Content.Load<Texture2D>("Walking");
-        _walkingAnimation = new SimpleAnimation(walkingSpriteSheet, );
+        _walkingAnimation = new SimpleAnimation(walkingSpriteSheet, 81, 144, 8, 8);
 
         _font = Content.Load<SpriteFont>("SystemArialFont");
     }
