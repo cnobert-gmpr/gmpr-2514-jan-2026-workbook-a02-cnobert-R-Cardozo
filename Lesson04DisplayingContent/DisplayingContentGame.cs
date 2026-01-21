@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Net.Http.Headers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Lesson04DisplayingContent;
@@ -10,6 +11,7 @@ public class DisplayingContentGame : Game
     private Texture2D _spaceStation, _ship;
     private SpriteFont _font;
     private string _output = "String being outputted :)";
+    private SimpleAnimation _walkingAnimation;
 
     public DisplayingContentGame()
     {
@@ -20,8 +22,8 @@ public class DisplayingContentGame : Game
 
     protected override void Initialize()
     {
-        _graphics.PreferredBackBufferWidth(640);
-        _graphics.PreferredBackBufferHeight(320);
+        _graphics.PreferredBackBufferWidth = 640;
+        _graphics.PreferredBackBufferHeight = 320;
         _graphics.ApplyChanges();
 
         base.Initialize();
@@ -33,6 +35,9 @@ public class DisplayingContentGame : Game
 
         _spaceStation = Content.Load<Texture2D>("Station");
         _ship = Content.Load<Texture2D>("Beetle");
+
+        Texture2D walkingSpriteSheet = Content.Load<Texture2D>("Walking");
+        _walkingAnimation = new SimpleAnimation(walkingSpriteSheet, );
 
         _font = Content.Load<SpriteFont>("SystemArialFont");
     }
