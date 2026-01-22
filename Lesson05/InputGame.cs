@@ -41,7 +41,8 @@ public class InputGame : Game
         {
             _message += "Up ";
         }
-        else if (_kbCurrentState.IsKeyDown(Keys.Down))
+        
+        if (_kbCurrentState.IsKeyDown(Keys.Down))
         {
             _message += "Down ";
         }
