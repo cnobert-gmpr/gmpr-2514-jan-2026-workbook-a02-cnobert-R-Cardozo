@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Security.Cryptography;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,7 +10,7 @@ public class InputGame : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private SpriteFont _font;
-    private string _message = "hi";
+    private string _message = "";
     private KeyboardState _kbPreviousState, _kbCurrentState;
 
     public InputGame()
@@ -35,11 +36,13 @@ public class InputGame : Game
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
+        _kbCurrentState = Keyboard.GetState();
+        if (_kbCurrentState.IsKeyDown(Keys.Up))
+        {
+            _message += "Up ";
+        }
 
-        
-
+        _kbPreviousState = _kbCurrentState;
         base.Update(gameTime);
     }
 
