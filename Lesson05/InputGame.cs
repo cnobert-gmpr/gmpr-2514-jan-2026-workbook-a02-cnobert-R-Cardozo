@@ -41,6 +41,11 @@ public class InputGame : Game
         {
             _message += "Up ";
         }
+        else if (_kbCurrentState.IsKeyDown(Keys.Down))
+        {
+            _message += "Down ";
+        }
+
 
         _kbPreviousState = _kbCurrentState;
         base.Update(gameTime);
