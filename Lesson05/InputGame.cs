@@ -46,6 +46,16 @@ public class InputGame : Game
         {
             _message += "Down ";
         }
+        
+        if (_kbCurrentState.IsKeyDown(Keys.Left))
+        {
+            _message += "Left ";
+        }
+        
+        if (_kbCurrentState.IsKeyDown(Keys.Right))
+        {
+            _message += "Right ";
+        }
 
 
         _kbPreviousState = _kbCurrentState;
