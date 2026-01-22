@@ -58,6 +58,19 @@ public class InputGame : Game
         }
         #endregion
 
+        if(_kbPreviousState.IsKeyUp(Keys.Space) && _kbCurrentState.IsKeyDown(Keys.Space))
+        {
+            _message += "\n";
+            _message += "Space Pressed\n";
+            _message += "--------------------------------------------------\n";
+            _message += "--------------------------------------------------\n";
+            _message += "--------------------------------------------------\n";
+            _message += "--------------------------------------------------\n";
+            _message += "--------------------------------------------------\n";
+            _message += "--------------------------------------------------\n";
+            _message += "--------------------------------------------------\n";
+        }
+
         _kbPreviousState = _kbCurrentState;
         base.Update(gameTime);
     }
