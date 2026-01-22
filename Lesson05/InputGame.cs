@@ -58,7 +58,7 @@ public class InputGame : Game
         }
         #endregion
 
-        if(_kbPreviousState.IsKeyUp(Keys.Space) && _kbCurrentState.IsKeyDown(Keys.Space))
+        if(IsKeyPressed(Keys.Space))
         {
             _message += "\n";
             _message += "Space Pressed\n";
@@ -103,5 +103,15 @@ public class InputGame : Game
         _spriteBatch.End();
 
         base.Draw(gameTime);
+    }
+
+    private bool IsKeyHeld(Keys key)
+    {
+        return _kbCurrentState.IsKeyDown(key);
+    }
+
+    private bool IsKeyPressed(Keys key)
+    {
+        return _kbPreviousState.IsKeyUp(key) && _kbCurrentState.IsKeyDown(key);
     }
 }
