@@ -10,7 +10,7 @@ public class InputGame : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private SpriteFont _font;
-    private string _message = "";
+    private string _message;
     private KeyboardState _kbPreviousState, _kbCurrentState;
 
     public InputGame()
@@ -37,26 +37,26 @@ public class InputGame : Game
     protected override void Update(GameTime gameTime)
     {
         _kbCurrentState = Keyboard.GetState();
+        
+        _message = "";
+        #region arrow keys
         if (_kbCurrentState.IsKeyDown(Keys.Up))
         {
             _message += "Up ";
         }
-        
         if (_kbCurrentState.IsKeyDown(Keys.Down))
         {
             _message += "Down ";
         }
-        
         if (_kbCurrentState.IsKeyDown(Keys.Left))
         {
             _message += "Left ";
         }
-        
         if (_kbCurrentState.IsKeyDown(Keys.Right))
         {
             _message += "Right ";
         }
-
+        #endregion
 
         _kbPreviousState = _kbCurrentState;
         base.Update(gameTime);
