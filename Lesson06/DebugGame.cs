@@ -67,8 +67,8 @@ public class DebugGame : Game
 
     private void Move(GameTime gameTime)
     {
-        float seconds = (float)gameTime.TotalGameTime.TotalSeconds;
-        _position.X += _speed * seconds;
+        float dt = (float)gameTime.TotalGameTime.TotalSeconds;
+        _position.X += _speed * dt;
 
         base.Update(gameTime);
     }
