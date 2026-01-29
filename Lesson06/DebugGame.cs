@@ -27,7 +27,7 @@ public class DebugGame : Game
         _position = new Vector2(60f, 80f);
         _dimensions = new Vector2(250f, 50f);
 
-        _speed = 120f;
+        _speed = 12f;
 
         base.Initialize();
     }
