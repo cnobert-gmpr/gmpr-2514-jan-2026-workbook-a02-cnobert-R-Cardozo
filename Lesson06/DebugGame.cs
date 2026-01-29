@@ -71,8 +71,6 @@ public class DebugGame : Game
         _position.X += _speed * seconds;
 
         base.Update(gameTime);
-
-        _position = new Vector2(60f, 80f);
     }
 }
  
