@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Drawing;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -6,8 +7,11 @@ namespace Lesson07;
 
 public class Pong : Game
 {
+    private const int _WindowWidth = 750, _WindowHeight = 450;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    private Texture2D _backgroundTexture, _ballTexture;
+    private Rectangle _playAreaBoundingBox;
 
     public Pong()
     {
