@@ -33,6 +33,8 @@ public class Pong : Game
         _ballDirection.X = -1;
         _ballDirection.Y = -1;
 
+        _playAreaBoundingBox = new Rectangle(0, 0, _WindowWidth, _WindowHeight);
+
         base.Initialize();
     }
 
@@ -50,6 +52,17 @@ public class Pong : Game
 
         _ballPosition += _ballDirection * _ballSpeed * dt;
 
+        #region bounce off walls
+        if(_ballPosition.X <= _playAreaBoundingBox.Left)
+        {
+            _ballDirection *= -1;
+        }
+        if(_ballPosition.X >= _playAreaBoundingBox.Right)
+        {
+            _ballDirection *= -1;
+        }
+        #endregion
+
         base.Update(gameTime);
     }
 
@@ -60,9 +73,7 @@ public class Pong : Game
         _spriteBatch.Begin();
 
         _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _WindowWidth, _WindowHeight), Color.White);
-
         Rectangle ballRectangle = new Rectangle((int) _ballPosition.X, (int) _ballPosition.Y, _BallWidthAndHeight, _BallWidthAndHeight);
-
         _spriteBatch.Draw(_ballTexture, ballRectangle, Color.White);
 
         _spriteBatch.End();
