@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Drawing;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -13,6 +14,16 @@ public class Pong : Game
     private Rectangle _playAreaBoundingBox;
     private Vector2 _ballPosition, _ballDirection;
     private float _ballSpeed;
+    
+    #region properties
+    internal Rectangle PlayAreaBoundingBox
+    {
+        get
+        {
+            return new Rectangle(0, 0, _WindowWidth, _WindowHeight);
+        }
+    }
+    #endregion
 
     public Pong()
     {
@@ -32,8 +43,6 @@ public class Pong : Game
 
         _ballDirection.X = -1;
         _ballDirection.Y = -1;
-
-        _playAreaBoundingBox = new Rectangle(0, 0, _WindowWidth, _WindowHeight);
 
         base.Initialize();
     }
