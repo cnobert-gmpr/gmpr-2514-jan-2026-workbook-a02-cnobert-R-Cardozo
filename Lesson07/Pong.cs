@@ -60,14 +60,14 @@ public class Pong : Game
         #region bounce off left or right walls
         if(_ballPosition.X <= PlayAreaBoundingBox.Left || _ballPosition.X + _BallWidthAndHeight >= PlayAreaBoundingBox.Right)
         {
-            _ballDirection *= -1;
+            _ballDirection.X *= -1;
         }
         #endregion
 
         #region bounce off the top or bottom walls
         if (_ballPosition.Y <= PlayAreaBoundingBox.Top || _ballPosition.Y + _BallWidthAndHeight >= PlayAreaBoundingBox.Bottom)
         {
-            _ballDirection *= -1;
+            _ballDirection.Y *= -1;
         }
         #endregion
 
