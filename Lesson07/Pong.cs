@@ -59,6 +59,13 @@ public class Pong : Game
         }
         #endregion
 
+        #region bounce off the top or bottom walls
+        if (_ballPosition.Y <= _playAreaBoundingBox.Top || _ballPosition.Y + _BallWidthAndHeight >= _playAreaBoundingBox.Bottom)
+        {
+            _ballDirection *= -1;
+        }
+        #endregion
+
         base.Update(gameTime);
     }
 
