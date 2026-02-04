@@ -52,12 +52,8 @@ public class Pong : Game
 
         _ballPosition += _ballDirection * _ballSpeed * dt;
 
-        #region bounce off walls
-        if(_ballPosition.X <= _playAreaBoundingBox.Left)
-        {
-            _ballDirection *= -1;
-        }
-        if(_ballPosition.X + _BallWidthAndHeight >= _playAreaBoundingBox.Right)
+        #region bounce off left or right walls
+        if(_ballPosition.X <= _playAreaBoundingBox.Left || _ballPosition.X + _BallWidthAndHeight >= _playAreaBoundingBox.Right)
         {
             _ballDirection *= -1;
         }
