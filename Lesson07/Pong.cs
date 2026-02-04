@@ -46,7 +46,9 @@ public class Pong : Game
 
     protected override void Update(GameTime gameTime)
     {
-        
+        float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
+
+        _ballPosition += _ballDirection * _ballSpeed * dt;
 
         base.Update(gameTime);
     }
