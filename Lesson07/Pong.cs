@@ -62,7 +62,7 @@ public class Pong : Game
 
         Rectangle ballRectangle = new Rectangle((int) _ballPosition.X, (int) _ballPosition.Y, _BallWidthAndHeight, _BallWidthAndHeight);
 
-        _spriteBatch.Draw(_ballTexture, _ballPosition, Color.White);
+        _spriteBatch.Draw(_ballTexture, ballRectangle, Color.White);
 
         _spriteBatch.End();
 
