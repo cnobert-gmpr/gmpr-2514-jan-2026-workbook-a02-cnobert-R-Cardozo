@@ -57,7 +57,7 @@ public class Pong : Game
         {
             _ballDirection *= -1;
         }
-        if(_ballPosition.X >= _playAreaBoundingBox.Right)
+        if(_ballPosition.X + _BallWidthAndHeight >= _playAreaBoundingBox.Right)
         {
             _ballDirection *= -1;
         }
