@@ -11,6 +11,8 @@ public class Pong : Game
     private SpriteBatch _spriteBatch;
     private Texture2D _backgroundTexture, _ballTexture;
     private Rectangle _playAreaBoundingBox;
+    private Vector2 _ballPosition, _ballDirection;
+    private float _ballSpeed;
 
     public Pong()
     {
@@ -24,6 +26,12 @@ public class Pong : Game
         _graphics.PreferredBackBufferWidth = _WindowWidth;
         _graphics.PreferredBackBufferHeight = _WindowHeight;
         _graphics.ApplyChanges();
+
+        _ballPosition = new Vector2(150, 195);
+        _ballSpeed = 60;
+
+        _ballDirection.X = -1;
+        _ballDirection.Y = -1;
 
         base.Initialize();
     }
