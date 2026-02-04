@@ -10,7 +10,7 @@ public class Pong : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Texture2D _backgroundTexture, _ballTexture;
-    private Rectangle PlayAreaBoundingBox;
+    private Rectangle _playAreaBoundingBox;
     private Vector2 _ballPosition, _ballDirection;
     private float _ballSpeed;
     
@@ -59,14 +59,14 @@ public class Pong : Game
         _ballPosition += _ballDirection * _ballSpeed * dt;
 
         #region bounce off left or right walls
-        if(_ballPosition.X <= PlayAreaBoundingBox.Left || _ballPosition.X + _BallWidthAndHeight >= PlayAreaBoundingBox.Right)
+        if(_ballPosition.X <= _playAreaBoundingBox.Left || _ballPosition.X + _BallWidthAndHeight >= _playAreaBoundingBox.Right)
         {
             _ballDirection *= -1;
         }
         #endregion
 
         #region bounce off the top or bottom walls
-        if (_ballPosition.Y <= PlayAreaBoundingBox.Top || _ballPosition.Y + _BallWidthAndHeight >= PlayAreaBoundingBox.Bottom)
+        if (_ballPosition.Y <= _playAreaBoundingBox.Top || _ballPosition.Y + _BallWidthAndHeight >= _playAreaBoundingBox.Bottom)
         {
             _ballDirection *= -1;
         }
