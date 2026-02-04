@@ -13,6 +13,7 @@ public class Pong : Game
     private Vector2 _ballPosition, _ballDirection;
     private float _ballSpeed;
     
+    #region properties
     internal Rectangle PlayAreaBoundingBox
     {
         get
@@ -20,6 +21,7 @@ public class Pong : Game
             return new Rectangle(0, 0, _WindowWidth, _WindowHeight);
         }
     }
+    #endregion
 
     public Pong()
     {
