@@ -7,6 +7,7 @@ namespace Lesson07;
 public class Pong : Game
 {
     private const int _WindowWidth = 750, _WindowHeight = 450, _BallWidthAndHeight = 21;
+    private const int _PlayAreaEdgeLineWidth = 12;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Texture2D _backgroundTexture, _ballTexture;
@@ -67,7 +68,7 @@ public class Pong : Game
         #endregion
 
         #region bounce off the top or bottom walls
-        if (_ballPosition.Y <= PlayAreaBoundingBox.Top || _ballPosition.Y + _BallWidthAndHeight >= PlayAreaBoundingBox.Bottom)
+        if (_ballPosition.Y - _PlayAreaEdgeLineWidth <= PlayAreaBoundingBox.Top || _ballPosition.Y + _PlayAreaEdgeLineWidth + _BallWidthAndHeight >= PlayAreaBoundingBox.Bottom)
         {
             _ballDirection.Y *= -1;
         }
