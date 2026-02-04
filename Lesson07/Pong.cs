@@ -31,15 +31,13 @@ public class Pong : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+        _backgroundTexture = Content.Load<Texture2D>("Court");
+        _ballTexture = Content.Load<Texture2D>("Ball");
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
-        // TODO: Add your update logic here
+        
 
         base.Update(gameTime);
     }
@@ -48,7 +46,9 @@ public class Pong : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+        _spriteBatch.Begin();
+        _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _WindowWidth, _WindowHeight), Color.White);
+        _spriteBatch.End();
 
         base.Draw(gameTime);
     }
