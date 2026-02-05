@@ -162,6 +162,13 @@ public class Pong : Game
         }
 
         #endregion
+        
+        #region bounce off right paddle
+        #endregion
+
+        #region bounce off left paddle
+        #endregion
+
         base.Update(gameTime);
     }
 
