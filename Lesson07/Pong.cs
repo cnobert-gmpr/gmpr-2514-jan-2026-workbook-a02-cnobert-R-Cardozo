@@ -12,8 +12,7 @@ public class Pong : Game
 {
     private const int _WindowWidth = 750, _WindowHeight = 450, _BallWidthAndHeight = 21;
     private const int _PlayAreaEdgeLineWidth = 12;
-    private const int _PaddleWidth = 6, _PaddleHeight = 54;
-    private const int _PaddleTwoWidth = 6, _PaddleTwoHeight = 54;
+    private const int _PaddleWidth = 6, _PaddleHeight = 74;
     private const float _PaddleSpeed = 240, _BallSpeed = 75;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
@@ -68,7 +67,7 @@ public class Pong : Game
 
         _paddleTwoPosition = new Vector2(54, 198);
         _paddleTwoSpeed = _PaddleSpeed;
-        _paddleTwoDimensions = new Vector2(_PaddleTwoWidth, _PaddleTwoHeight);
+        _paddleTwoDimensions = new Vector2(_PaddleWidth, _PaddleHeight);
         _paddleDirection = Vector2.Zero;
 
         base.Initialize();
