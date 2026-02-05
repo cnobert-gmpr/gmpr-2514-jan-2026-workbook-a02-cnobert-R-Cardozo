@@ -83,7 +83,7 @@ public class Pong : Game
 
         #region bounce off left or right walls
 
-        if(_ballPosition.X <= PlayAreaBoundingBox.Left || _ballPosition.X + _BallWidthAndHeight >= PlayAreaBoundingBox.Right)
+        if(_ballPosition.X <= PlayAreaBoundingBox.Left || (_ballPosition.X + _BallWidthAndHeight) >= PlayAreaBoundingBox.Right)
         {
             _ballDirection.X *= -1;
         }
@@ -92,7 +92,7 @@ public class Pong : Game
 
         #region bounce off the top or bottom walls
 
-        if (_ballPosition.Y <= PlayAreaBoundingBox.Top || _ballPosition.Y + _BallWidthAndHeight >= PlayAreaBoundingBox.Bottom)
+        if (_ballPosition.Y <= PlayAreaBoundingBox.Top || (_ballPosition.Y + _BallWidthAndHeight) >= PlayAreaBoundingBox.Bottom)
         {
             _ballDirection.Y *= -1;
         }
@@ -116,6 +116,14 @@ public class Pong : Game
         }
 
         _paddlePosition += _paddleDirection * _paddleSpeed * dt;
+
+        if(_paddlePosition.Y <= PlayAreaBoundingBox.Top)
+        {
+            _paddlePosition.Y = PlayAreaBoundingBox.Top;
+        }
+        else if((_paddlePosition.Y + _paddleDimensions.Y) >= PlayAreaBoundingBox.Bottom){
+            _paddlePosition.Y = PlayAreaBoundingBox.Bottom;
+        }
 
         #endregion
 
