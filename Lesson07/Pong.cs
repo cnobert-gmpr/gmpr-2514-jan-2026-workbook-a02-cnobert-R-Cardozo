@@ -22,6 +22,14 @@ public class Pong : Game
             return new Rectangle(0, 0, _WindowWidth, _WindowHeight);
         }
     }
+    
+    /* ALTERNATE VERSION
+
+    internal Rectangle PlayAreaBoundingBox(){
+        return new Rectangle(0, 00, _WindowWidth, _WindowHeight);
+    }
+
+    */
     #endregion
 
     public Pong()
