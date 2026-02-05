@@ -139,7 +139,24 @@ public class Pong : Game
 
         if (kbState.IsKeyDown(Keys.W))
         {
-            
+            _paddleTwoDirection = new Vector2(0, -1);
+        }
+        else if (kbState.IsKeyDown(Keys.S))
+        {
+            _paddleTwoDirection = new Vector2(0, 1);
+        }
+        else
+        {
+            _paddleTwoDirection = Vector2.Zero;
+        }
+
+        if(_paddleTwoPosition.Y <= PlayAreaBoundingBox.Top)
+        {
+            _paddleTwoPosition.Y = PlayAreaBoundingBox.Top;
+        }
+        else if ((_paddleTwoPosition.Y + _paddleTwoDimensions.Y) >= PlayAreaBoundingBox.Bottom)
+        {
+            _paddleTwoPosition.Y = PlayAreaBoundingBox.Bottom - _paddleTwoDimensions.Y;
         }
 
         #endregion
