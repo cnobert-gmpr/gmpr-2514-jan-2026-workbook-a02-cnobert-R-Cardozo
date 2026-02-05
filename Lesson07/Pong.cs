@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Net.Mime;
+using System.Numerics;
+using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -81,17 +83,39 @@ public class Pong : Game
         _ballPosition += _ballDirection * _ballSpeed * dt;
 
         #region bounce off left or right walls
+
         if(_ballPosition.X <= PlayAreaBoundingBox.Left || _ballPosition.X + _BallWidthAndHeight >= PlayAreaBoundingBox.Right)
         {
             _ballDirection.X *= -1;
         }
+
         #endregion
 
         #region bounce off the top or bottom walls
+
         if (_ballPosition.Y <= PlayAreaBoundingBox.Top || _ballPosition.Y + _BallWidthAndHeight >= PlayAreaBoundingBox.Bottom)
         {
             _ballDirection.Y *= -1;
         }
+
+        #endregion
+
+        #region right paddle movement
+
+        KeyboardState kbState = Keyboard.GetState();
+
+        if (kbState.IsKeyDown(Keys.Up))
+        {
+            _paddleDirection = new Vector2(0, -1);
+        }
+        else if(kbState.IsKeyDown(Keys.Down)){
+            _paddleDirection = new Vector(0, 1);
+        }
+        else
+        {
+            _paddleDirection = Vector2.Zero;
+        }
+
         #endregion
 
         base.Update(gameTime);
