@@ -150,6 +150,8 @@ public class Pong : Game
             _paddleTwoDirection = Vector2.Zero;
         }
 
+        _paddleTwoPosition += _paddleTwoDirection * _paddleTwoSpeed * dt;
+
         if(_paddleTwoPosition.Y <= PlayAreaBoundingBox.Top)
         {
             _paddleTwoPosition.Y = PlayAreaBoundingBox.Top;
