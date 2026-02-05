@@ -109,7 +109,7 @@ public class Pong : Game
         _spriteBatch.Draw(_ballTexture, ballRectangle, Color.White);
 
         Rectangle paddleRectangle = new Rectangle((int) _paddlePosition.X, (int) _paddlePosition.Y, (int) _paddleDimensions.X, (int) _paddleDimensions.Y);
-        _spriteBatch.Draw(_paddleTexture, paddleRectangle, Color.white);
+        _spriteBatch.Draw(_paddleTexture, paddleRectangle, Color.White);
 
         _spriteBatch.End();
 
