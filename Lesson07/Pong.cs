@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Net.Mime;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -69,6 +70,7 @@ public class Pong : Game
 
         _backgroundTexture = Content.Load<Texture2D>("Court");
         _ballTexture = Content.Load<Texture2D>("Ball");
+        _paddleTexture = Content.Load<Texture2D>("Paddle");
     }
 
     protected override void Update(GameTime gameTime)
