@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Net.Mime;
-using System.Numerics;
 using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -109,12 +108,14 @@ public class Pong : Game
             _paddleDirection = new Vector2(0, -1);
         }
         else if(kbState.IsKeyDown(Keys.Down)){
-            _paddleDirection = new Vector(0, 1);
+            _paddleDirection = new Vector2(0, 1);
         }
         else
         {
             _paddleDirection = Vector2.Zero;
         }
+
+        _paddlePosition += _paddleDirection * _paddleSpeed * dt;
 
         #endregion
 
