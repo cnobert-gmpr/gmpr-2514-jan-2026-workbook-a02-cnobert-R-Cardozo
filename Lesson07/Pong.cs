@@ -19,10 +19,10 @@ public class Pong : Game
     {
         get
         {
-            return new Rectangle(0, 0, _WindowWidth, _WindowHeight);
+            return new Rectangle(0, _PlayAreaEdgeLineWidth, _WindowWidth, _WindowHeight - (2 * _PlayAreaEdgeLineWidth));
         }
     }
-    
+
     /* ALTERNATE VERSION
 
     internal Rectangle PlayAreaBoundingBox(){
@@ -76,7 +76,7 @@ public class Pong : Game
         #endregion
 
         #region bounce off the top or bottom walls
-        if (_ballPosition.Y - _PlayAreaEdgeLineWidth <= PlayAreaBoundingBox.Top || _ballPosition.Y + _PlayAreaEdgeLineWidth + _BallWidthAndHeight >= PlayAreaBoundingBox.Bottom)
+        if (_ballPosition.Y <= PlayAreaBoundingBox.Top || _ballPosition.Y + _BallWidthAndHeight >= PlayAreaBoundingBox.Bottom)
         {
             _ballDirection.Y *= -1;
         }
