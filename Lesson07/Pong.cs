@@ -122,7 +122,7 @@ public class Pong : Game
             _paddlePosition.Y = PlayAreaBoundingBox.Top;
         }
         else if((_paddlePosition.Y + _paddleDimensions.Y) >= PlayAreaBoundingBox.Bottom){
-            _paddlePosition.Y = PlayAreaBoundingBox.Bottom;
+            _paddlePosition.Y = PlayAreaBoundingBox.Bottom - _paddleDimensions.Y;
         }
 
         #endregion
