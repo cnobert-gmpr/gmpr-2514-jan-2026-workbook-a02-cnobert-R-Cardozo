@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Numerics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -8,11 +9,15 @@ public class Pong : Game
 {
     private const int _WindowWidth = 750, _WindowHeight = 450, _BallWidthAndHeight = 21;
     private const int _PlayAreaEdgeLineWidth = 12;
+    private const int _PaddleWidth = 6, _PaddleHeight = 54;
+    private const float _PaddleSpeed = 240, _BallSpeed = 75;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private Texture2D _backgroundTexture, _ballTexture;
+    private Texture2D _backgroundTexture, _ballTexture, _paddleTexture;
     private Vector2 _ballPosition, _ballDirection;
     private float _ballSpeed;
+    private Vector2 _paddlePosition, _paddleDirection, _paddleDimensions;
+    private float _paddleSpeed;
     
     #region properties
     internal Rectangle PlayAreaBoundingBox
@@ -46,10 +51,15 @@ public class Pong : Game
         _graphics.ApplyChanges();
 
         _ballPosition = new Vector2(150, 195);
-        _ballSpeed = 60;
+        _ballSpeed = _BallSpeed;
 
         _ballDirection.X = -1;
         _ballDirection.Y = -1;
+
+        _paddlePosition = new Vector2(690, 198);
+        _paddleSpeed = _PaddleSpeed;
+        _paddleDimensions = new Vector2(_PaddleWidth, _PaddleHeight);
+        _paddleDirection = Vector2.Zero;
 
         base.Initialize();
     }
