@@ -66,7 +66,7 @@ public class Pong : Game
         _paddleDimensions = new Vector2(_PaddleWidth, _PaddleHeight);
         _paddleDirection = Vector2.Zero;
 
-        _paddleTwoPosition = new Vector2(100, 198);
+        _paddleTwoPosition = new Vector2(56, 198);
         _paddleTwoSpeed = _PaddleSpeed;
         _paddleTwoDimensions = new Vector2(_PaddleTwoWidth, _PaddleTwoHeight);
         _paddleDirection = Vector2.Zero;
