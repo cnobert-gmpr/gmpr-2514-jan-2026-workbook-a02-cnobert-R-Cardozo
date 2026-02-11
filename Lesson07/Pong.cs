@@ -17,9 +17,7 @@ public class Pong : Game
     private const float _PaddleSpeed = 240, _BallSpeed = 75;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private Texture2D _backgroundTexture, _ballTexture, _paddleTexture;
-    private Ball _ball;
-    private Vector2 _ballPosition, _ballDirection;
+    private Texture2D _backgroundTexture, _paddleTexture;
     private Vector2 _paddlePosition, _paddleDirection, _paddleDimensions;
     private Vector2 _paddleTwoPosition, _paddleTwoDirection, _paddleTwoDimensions;
     private float _paddleSpeed, _paddleTwoSpeed;
@@ -76,6 +74,7 @@ public class Pong : Game
 
         _backgroundTexture = Content.Load<Texture2D>("Court");
         _paddleTexture = Content.Load<Texture2D>("Paddle");
+        _ball.LoadContent(Content);
     }
 
     protected override void Update(GameTime gameTime)
