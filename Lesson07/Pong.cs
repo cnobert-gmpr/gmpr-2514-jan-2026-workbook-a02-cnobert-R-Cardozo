@@ -53,7 +53,7 @@ public class Pong : Game
         _graphics.PreferredBackBufferHeight = _WindowHeight;
         _graphics.ApplyChanges();
 
-        _ball.Initialize(new Vector2(150, 195), new Vector2(21, 21), new Vector2(-1, -1), 60);
+        _ball.Initialize(new Vector2(150, 195), new Vector2(21, 21), new Vector2(-1, -1), 60, PlayAreaBoundingBox);
 
         _paddlePosition = new Vector2(690, 198);
         _paddleSpeed = _PaddleSpeed;
@@ -80,6 +80,8 @@ public class Pong : Game
     protected override void Update(GameTime gameTime)
     {
         float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
+
+        _ball.Update(gameTime);
 
         // _ballPosition += _ballDirection * _ballSpeed * dt;
         /**
@@ -156,7 +158,7 @@ public class Pong : Game
 
         _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _WindowWidth, _WindowHeight), Color.White);
 
-        _ball.Draw(spriteBatch);
+        _ball.Draw(_spriteBatch);
 
         Rectangle paddleRectangle = new Rectangle((int) _paddlePosition.X, (int) _paddlePosition.Y, (int) _paddleDimensions.X, (int) _paddleDimensions.Y);
         _spriteBatch.Draw(_paddleTexture, paddleRectangle, Color.White);
