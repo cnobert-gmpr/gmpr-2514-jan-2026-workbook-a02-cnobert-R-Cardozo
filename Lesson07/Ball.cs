@@ -32,7 +32,7 @@ public class Ball
         
         #region bounce off left or right walls
 
-        if(_position.X <= PlayAreaBoundingBox.Left || (_position.X + _dimensions.X) >= PlayAreaBoundingBox.Right)
+        if(_position.X <= _playAreaBoundingBox.Left || (_position.X + _dimensions.X) >= _playAreaBoundingBox.Right)
         {
             _direction.X *= -1;
         }
@@ -41,7 +41,7 @@ public class Ball
 
         #region bounce off the top or bottom walls
 
-        if (_position.Y <= PlayAreaBoundingBox.Top || (_position.Y + _dimensions.Y) >= PlayAreaBoundingBox.Bottom)
+        if (_position.Y <= _playAreaBoundingBox.Top || (_position.Y + _dimensions.Y) >= _playAreaBoundingBox.Bottom)
         {
             _direction.Y *= -1;
         }
