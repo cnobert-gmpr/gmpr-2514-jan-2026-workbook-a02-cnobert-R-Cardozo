@@ -4,6 +4,7 @@ namespace Lesson07;
 
 public class Ball
 {
+    private Texture2D _texture;
     private Vector2 _position, _dimension, _direction;
     private float _speed;
 
@@ -13,5 +14,10 @@ public class Ball
         _dimensions = dimensions;
         _direction = direction;
         _speed = speed;
+    }
+
+    internal void LoadContent(ContentManager content)
+    {
+        _texture = Content.Load<Texture2D>("Ball");
     }
 }

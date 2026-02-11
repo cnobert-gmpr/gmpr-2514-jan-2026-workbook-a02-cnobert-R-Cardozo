@@ -75,7 +75,6 @@ public class Pong : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         _backgroundTexture = Content.Load<Texture2D>("Court");
-        _ballTexture = Content.Load<Texture2D>("Ball");
         _paddleTexture = Content.Load<Texture2D>("Paddle");
     }
 
