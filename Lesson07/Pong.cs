@@ -20,7 +20,6 @@ public class Pong : Game
     private Texture2D _backgroundTexture, _ballTexture, _paddleTexture;
     private Ball _ball;
     private Vector2 _ballPosition, _ballDirection;
-    private float _ballSpeed;
     private Vector2 _paddlePosition, _paddleDirection, _paddleDimensions;
     private Vector2 _paddleTwoPosition, _paddleTwoDirection, _paddleTwoDimensions;
     private float _paddleSpeed, _paddleTwoSpeed;
@@ -56,7 +55,7 @@ public class Pong : Game
         _graphics.PreferredBackBufferHeight = _WindowHeight;
         _graphics.ApplyChanges();
 
-        _ball.Initialize(new Vector2(150, 195), new Vector2(21, 21), new Vector2(-1, -1), _BallSpeed);
+        _ball.Initialize(new Vector2(150, 195), new Vector2(21, 21), new Vector2(-1, -1), 60);
 
         _paddlePosition = new Vector2(690, 198);
         _paddleSpeed = _PaddleSpeed;
