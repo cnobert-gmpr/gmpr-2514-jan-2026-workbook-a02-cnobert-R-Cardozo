@@ -12,12 +12,13 @@ public class Ball
     private float _speed;
     private Rectangle _playAreaBoundingBox;
 
-    internal void Initialize(Vector2 position, Vector2 dimensions, Vector2 direction, float speed)
+    internal void Initialize(Vector2 position, Vector2 dimensions, Vector2 direction, float speed, Rectangle playAreaBoundingBox)
     {
         _position = position;
         _dimensions = dimensions;
         _direction = direction;
         _speed = speed;
+        _playAreaBoundingBox = playAreaBoundingBox;
     }
 
     internal void LoadContent(ContentManager content)
