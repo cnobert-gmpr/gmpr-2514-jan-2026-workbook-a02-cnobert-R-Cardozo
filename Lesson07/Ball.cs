@@ -26,6 +26,6 @@ public class Ball
     internal void Draw(SpriteBatch spriteBatch)
     {
         Rectangle ballRectangle = new Rectangle((int) _position.X, (int) _position.Y, (int) _dimensions.X, (int) _dimensions.Y);
-        _spriteBatch.Draw(_texture, ballRectangle, Color.White);
+        spriteBatch.Draw(_texture, ballRectangle, Color.White);
     }
 }

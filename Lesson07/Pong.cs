@@ -81,7 +81,7 @@ public class Pong : Game
     {
         float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
 
-        _ballPosition += _ballDirection * _ballSpeed * dt;
+        // _ballPosition += _ballDirection * _ballSpeed * dt;
         /**
         #region bounce off left or right walls
 
