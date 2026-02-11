@@ -1,3 +1,4 @@
+using System.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,6 +10,7 @@ public class Ball
     private Texture2D _texture;
     private Vector2 _position, _dimensions, _direction;
     private float _speed;
+    private Rectangle _playAreaBoundingBox;
 
     internal void Initialize(Vector2 position, Vector2 dimensions, Vector2 direction, float speed)
     {
