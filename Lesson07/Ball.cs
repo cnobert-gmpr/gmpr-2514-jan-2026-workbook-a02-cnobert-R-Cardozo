@@ -1,4 +1,6 @@
-using System.Formats.Tar;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Lesson07;
 
