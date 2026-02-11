@@ -74,7 +74,7 @@ public class Pong : Game
 
         _backgroundTexture = Content.Load<Texture2D>("Court");
         _paddleTexture = Content.Load<Texture2D>("Paddle");
-        _ball.LoadContent(Content);
+        _ball.LoadContent(this.Content);
     }
 
     protected override void Update(GameTime gameTime)
