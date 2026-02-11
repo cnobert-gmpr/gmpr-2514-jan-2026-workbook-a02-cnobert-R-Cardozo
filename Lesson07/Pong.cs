@@ -83,24 +83,6 @@ public class Pong : Game
 
         // _ballPosition += _ballDirection * _ballSpeed * dt;
         /**
-        #region bounce off left or right walls
-
-        if(_ballPosition.X <= PlayAreaBoundingBox.Left || (_ballPosition.X + _BallWidthAndHeight) >= PlayAreaBoundingBox.Right)
-        {
-            _ballDirection.X *= -1;
-        }
-
-        #endregion
-
-        #region bounce off the top or bottom walls
-
-        if (_ballPosition.Y <= PlayAreaBoundingBox.Top || (_ballPosition.Y + _BallWidthAndHeight) >= PlayAreaBoundingBox.Bottom)
-        {
-            _ballDirection.Y *= -1;
-        }
-
-        #endregion
-
         #region right paddle movement
 
         KeyboardState kbState = Keyboard.GetState();
@@ -174,7 +156,7 @@ public class Pong : Game
 
         _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _WindowWidth, _WindowHeight), Color.White);
 
-        _ball.Draw(_spriteBatch);
+        _ball.Draw(spriteBatch);
 
         Rectangle paddleRectangle = new Rectangle((int) _paddlePosition.X, (int) _paddlePosition.Y, (int) _paddleDimensions.X, (int) _paddleDimensions.Y);
         _spriteBatch.Draw(_paddleTexture, paddleRectangle, Color.White);
