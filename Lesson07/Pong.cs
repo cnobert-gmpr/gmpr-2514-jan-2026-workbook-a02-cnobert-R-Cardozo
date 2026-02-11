@@ -17,6 +17,7 @@ public class Pong : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Texture2D _backgroundTexture, _ballTexture, _paddleTexture;
+    private Ball _ball;
     private Vector2 _ballPosition, _ballDirection;
     private float _ballSpeed;
     private Vector2 _paddlePosition, _paddleDirection, _paddleDimensions;
