@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Net.Mime;
+using System.Numerics;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
@@ -55,13 +56,7 @@ public class Pong : Game
         _graphics.PreferredBackBufferHeight = _WindowHeight;
         _graphics.ApplyChanges();
 
-        _ball.Initialize();
-
-        _ballPosition = new Vector2(150, 195);
-        _ballSpeed = _BallSpeed;
-
-        _ballDirection.X = -1;
-        _ballDirection.Y = -1;
+        _ball.Initialize(new Vector2(150, 195), new Vector2(21, 21), new Vector2(-1, -1), _BallSpeed);
 
         _paddlePosition = new Vector2(690, 198);
         _paddleSpeed = _PaddleSpeed;
