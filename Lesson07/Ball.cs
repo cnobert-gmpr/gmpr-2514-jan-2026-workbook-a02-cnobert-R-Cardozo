@@ -18,6 +18,6 @@ public class Ball
 
     internal void LoadContent(ContentManager content)
     {
-        _texture = Content.Load<Texture2D>("Ball");
+        _texture = content.Load<Texture2D>("Ball");
     }
 }
