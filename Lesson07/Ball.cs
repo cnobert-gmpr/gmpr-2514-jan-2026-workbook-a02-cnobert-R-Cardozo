@@ -8,7 +8,7 @@ public class Ball
     private Vector2 _position, _dimension, _direction;
     private float _speed;
 
-    internal void Initialize(Vector2 position, float speed, Vector2 dimensions, Vector2 direction)
+    internal void Initialize(Vector2 position, Vector2 dimensions, Vector2 direction, float speed)
     {
         _position = position;
         _dimensions = dimensions;
