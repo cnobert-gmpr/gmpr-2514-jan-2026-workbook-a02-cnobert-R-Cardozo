@@ -55,6 +55,8 @@ public class Pong : Game
         _graphics.PreferredBackBufferHeight = _WindowHeight;
         _graphics.ApplyChanges();
 
+        _ball.Initialize();
+
         _ballPosition = new Vector2(150, 195);
         _ballSpeed = _BallSpeed;
 
