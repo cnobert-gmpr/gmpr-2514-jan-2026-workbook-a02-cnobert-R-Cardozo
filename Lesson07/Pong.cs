@@ -18,6 +18,7 @@ public class Pong : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Texture2D _backgroundTexture, _paddleTexture;
+    private Ball _ball;
     private Vector2 _paddlePosition, _paddleDirection, _paddleDimensions;
     private Vector2 _paddleTwoPosition, _paddleTwoDirection, _paddleTwoDimensions;
     private float _paddleSpeed, _paddleTwoSpeed;
@@ -82,7 +83,7 @@ public class Pong : Game
         float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
 
         _ballPosition += _ballDirection * _ballSpeed * dt;
-
+        /**
         #region bounce off left or right walls
 
         if(_ballPosition.X <= PlayAreaBoundingBox.Left || (_ballPosition.X + _BallWidthAndHeight) >= PlayAreaBoundingBox.Right)
@@ -162,7 +163,7 @@ public class Pong : Game
 
         #region bounce off left paddle
         #endregion
-
+        **/
         base.Update(gameTime);
     }
 
@@ -174,8 +175,7 @@ public class Pong : Game
 
         _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _WindowWidth, _WindowHeight), Color.White);
 
-        Rectangle ballRectangle = new Rectangle((int) _ballPosition.X, (int) _ballPosition.Y, _BallWidthAndHeight, _BallWidthAndHeight);
-        _spriteBatch.Draw(_ballTexture, ballRectangle, Color.White);
+        _ball.Draw(_spriteBatch);
 
         Rectangle paddleRectangle = new Rectangle((int) _paddlePosition.X, (int) _paddlePosition.Y, (int) _paddleDimensions.X, (int) _paddleDimensions.Y);
         _spriteBatch.Draw(_paddleTexture, paddleRectangle, Color.White);
