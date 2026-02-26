@@ -80,8 +80,6 @@ public class Pong : Game
         #endregion
 
         #region right keyboard input
-        KeyboardState kbState = Keyboard.GetState();
-
         if (kbState.IsKeyDown(Keys.Up))
         {
             _rightPaddle.Direction = new Vector2(0, -1);
