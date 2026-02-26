@@ -10,35 +10,17 @@ namespace Lesson07;
 
 public class Pong : Game
 {
-    private const int _WindowWidth = 750, _WindowHeight = 450, _BallWidthAndHeight = 21;
-    private const int _PlayAreaEdgeLineWidth = 12;
-    private const int _PaddleWidth = 6, _PaddleHeight = 74;
-    private const float _PaddleSpeed = 240, _BallSpeed = 75;
+    private const int _Scale = 3;
+    private const int _WindowWidth = 250 *_Scale, _WindowHeight = 150 * _Scale;
+    private const int _PlayAreaEdgeLineWidth = 4 * _Scale;
+
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private Texture2D _backgroundTexture, _paddleTexture;
+    private Texture2D _backgroundTexture;
+    private Rectangle _playAreaBoundingBox;
+
     private Ball _ball;
-    private Vector2 _paddlePosition, _paddleDirection, _paddleDimensions;
-    private Vector2 _paddleTwoPosition, _paddleTwoDirection, _paddleTwoDimensions;
-    private float _paddleSpeed, _paddleTwoSpeed;
-    
-    #region properties
-    internal Rectangle PlayAreaBoundingBox
-    {
-        get
-        {
-            return new Rectangle(0, _PlayAreaEdgeLineWidth, _WindowWidth, _WindowHeight - (2 * _PlayAreaEdgeLineWidth));
-        }
-    }
-
-    /* ALTERNATE VERSION
-
-    internal Rectangle PlayAreaBoundingBox(){
-        return new Rectangle(0, 00, _WindowWidth, _WindowHeight);
-    }
-
-    */
-    #endregion
+    private Paddle _paddle;
 
     public Pong()
     {
@@ -53,17 +35,13 @@ public class Pong : Game
         _graphics.PreferredBackBufferHeight = _WindowHeight;
         _graphics.ApplyChanges();
 
-        _ball.Initialize(new Vector2(150, 195), new Vector2(21, 21), new Vector2(-1, -1), 60, PlayAreaBoundingBox);
+        _playAreaBoundingBox = new Rectangle(0, _PlayAreaEdgeLineWidth, _WindowWidth, _WindowHeight - 2 * _PlayAreaEdgeLineWidth);
 
-        _paddlePosition = new Vector2(690, 198);
-        _paddleSpeed = _PaddleSpeed;
-        _paddleDimensions = new Vector2(_PaddleWidth, _PaddleHeight);
-        _paddleDirection = Vector2.Zero;
+        _ball = new Ball();
+        _ball.Initialize(new Vector2(50, 65), new Vector2(1, -2), _Scale, _playAreaBoundingBox);
 
-        _paddleTwoPosition = new Vector2(54, 198);
-        _paddleTwoSpeed = _PaddleSpeed;
-        _paddleTwoDimensions = new Vector2(_PaddleWidth, _PaddleHeight);
-        _paddleDirection = Vector2.Zero;
+        _paddle = new Paddle();
+        _paddle.Initialize(new Vector2(210 * _Scale, 75 * _Scale), _Scale, _playAreaBoundingBox);
 
         base.Initialize();
     }
@@ -73,80 +51,42 @@ public class Pong : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         _backgroundTexture = Content.Load<Texture2D>("Court");
-        _paddleTexture = Content.Load<Texture2D>("Paddle");
+
         _ball.LoadContent(this.Content);
+        _paddle.LoadContent(this.Content);
     }
 
     protected override void Update(GameTime gameTime)
     {
-        float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
 
-        _ball.Update(gameTime);
-
-        // _ballPosition += _ballDirection * _ballSpeed * dt;
-        /**
-        #region right paddle movement
-
+        #region keyboard input
         KeyboardState kbState = Keyboard.GetState();
-
-        if (kbState.IsKeyDown(Keys.Up))
-        {
-            _paddleDirection = new Vector2(0, -1);
-        }
-        else if(kbState.IsKeyDown(Keys.Down)){
-            _paddleDirection = new Vector2(0, 1);
-        }
-        else
-        {
-            _paddleDirection = Vector2.Zero;
-        }
-
-        _paddlePosition += _paddleDirection * _paddleSpeed * dt;
-
-        if(_paddlePosition.Y <= PlayAreaBoundingBox.Top)
-        {
-            _paddlePosition.Y = PlayAreaBoundingBox.Top;
-        }
-        else if((_paddlePosition.Y + _paddleDimensions.Y) >= PlayAreaBoundingBox.Bottom){
-            _paddlePosition.Y = PlayAreaBoundingBox.Bottom - _paddleDimensions.Y;
-        }
-
-        #endregion
-
-        #region left paddle movement
 
         if (kbState.IsKeyDown(Keys.W))
         {
-            _paddleTwoDirection = new Vector2(0, -1);
-        }
-        else if (kbState.IsKeyDown(Keys.S))
+            _paddle.Direction = new Vector2(0, -1);
+        }else if (kbState.IsKeyDown(Keys.S))
         {
-            _paddleTwoDirection = new Vector2(0, 1);
+            _paddle.Direction = new Vector2(0, 1);
         }
         else
         {
-            _paddleTwoDirection = Vector2.Zero;
+            _paddle.Direction = new Vector2(0, 0);
         }
 
-        _paddleTwoPosition += _paddleTwoDirection * _paddleTwoSpeed * dt;
+        #endregion
 
-        if(_paddleTwoPosition.Y <= PlayAreaBoundingBox.Top)
+        _ball.Update(gameTime);
+        _paddle.Update(gameTime);
+
+        if (_ball.ProcessCollision(_paddle.BoundingBox))
         {
-            _paddleTwoPosition.Y = PlayAreaBoundingBox.Top;
-        }
-        else if ((_paddleTwoPosition.Y + _paddleTwoDimensions.Y) >= PlayAreaBoundingBox.Bottom)
-        {
-            _paddleTwoPosition.Y = PlayAreaBoundingBox.Bottom - _paddleTwoDimensions.Y;
+            //_hud.Paddle01Score++;
+            _paddle.Glow();
         }
 
-        #endregion
-        
-        #region bounce off right paddle
-        #endregion
-
-        #region bounce off left paddle
-        #endregion
-        **/
         base.Update(gameTime);
     }
 
@@ -155,17 +95,9 @@ public class Pong : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         _spriteBatch.Begin();
-
-        _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _WindowWidth, _WindowHeight), Color.White);
-
+        _spriteBatch.Draw(_backgroundTexture, Vector2.Zero, null, Color.White, 0, Vector2.Zero, _Scale, SpriteEffects.None, 0);
         _ball.Draw(_spriteBatch);
-
-        Rectangle paddleRectangle = new Rectangle((int) _paddlePosition.X, (int) _paddlePosition.Y, (int) _paddleDimensions.X, (int) _paddleDimensions.Y);
-        _spriteBatch.Draw(_paddleTexture, paddleRectangle, Color.White);
-
-        Rectangle paddleTwoRectangle = new Rectangle((int) _paddleTwoPosition.X, (int) _paddleTwoPosition.Y, (int) _paddleTwoDimensions.X, (int) _paddleTwoDimensions.Y);
-        _spriteBatch.Draw(_paddleTexture, paddleTwoRectangle, Color.White);
-
+        _paddle.Draw(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);

@@ -6,18 +6,32 @@ namespace Lesson07;
 
 public class Ball
 {
+    private const int _WidthAndHeight = 7;
+    private const int _Speed = 50;
+    private const int _CollisionTimerIntervalMillis = 400;
     private Texture2D _texture;
-    private Vector2 _position, _dimensions, _direction;
+    private Vector2 _dimensions, _position, _direction;
     private float _speed;
-    private Rectangle _playAreaBoundingBox;
+    private int _collisionTimerMillis;
 
-    internal void Initialize(Vector2 position, Vector2 dimensions, Vector2 direction, float speed, Rectangle playAreaBoundingBox)
+    private int _gameScale;
+    private Rectangle _playAreaBoundingBox;
+    internal Rectangle BoundingBox
     {
-        _position = position;
-        _dimensions = dimensions;
-        _direction = direction;
-        _speed = speed;
+        get
+        {
+            return new Rectangle(_position.ToPoint(), _dimensions.ToPoint());
+        }
+    }
+    internal void Initialize(Vector2 initialPosition, Vector2 initialDirection, int gameScale, Rectangle playAreaBoundingBox)
+    {
+        _position = initialPosition;
+        _direction = initialDirection;
+        _gameScale = gameScale;
         _playAreaBoundingBox = playAreaBoundingBox;
+        _speed = _Speed * _gameScale;
+        
+        _dimensions = new Vector2(_WidthAndHeight * _gameScale);
     }
 
     internal void LoadContent(ContentManager content)
@@ -27,9 +41,11 @@ public class Ball
 
     internal void Update(GameTime gameTime)
     {
-        float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
-        
-        #region bounce off left or right walls
+        _collisionTimerMillis += gameTime.ElapsedGameTime.Milliseconds;
+
+        _position += _direction * _speed * (float) gameTime.ElapsedGameTime.TotalSeconds;
+
+        #region bounce off left and right walls
 
         if(_position.X <= _playAreaBoundingBox.Left || (_position.X + _dimensions.X) >= _playAreaBoundingBox.Right)
         {
@@ -38,9 +54,9 @@ public class Ball
 
         #endregion
 
-        #region bounce off the top or bottom walls
+        #region bounce off top or bottom walls
 
-        if (_position.Y <= _playAreaBoundingBox.Top || (_position.Y + _dimensions.Y) >= _playAreaBoundingBox.Bottom)
+        if(_position.Y <= _playAreaBoundingBox.Top || (_position.Y + _dimensions.Y) >= _playAreaBoundingBox.Bottom)
         {
             _direction.Y *= -1;
         }
@@ -52,5 +68,26 @@ public class Ball
     {
         Rectangle ballRectangle = new Rectangle((int) _position.X, (int) _position.Y, (int) _dimensions.X, (int) _dimensions.Y);
         spriteBatch.Draw(_texture, ballRectangle, Color.White);
+    }
+
+    internal bool ProcessCollision(Rectangle otherBoundingBox)
+    {
+        bool didCollide = false;
+        if(_collisionTimerMillis >= _CollisionTimerIntervalMillis && BoundingBox.Intersects(otherBoundingBox))
+        {
+            didCollide = true;
+            _collisionTimerMillis = 0;
+
+            Rectangle intersection = Rectangle.Intersect(BoundingBox, otherBoundingBox);
+            if(intersection.Width > intersection.Height)
+            {
+                _direction.Y *= -1;
+            }
+            else
+            {
+                _direction.X *= -1;
+            }
+        }
+        return didCollide;
     }
 }
