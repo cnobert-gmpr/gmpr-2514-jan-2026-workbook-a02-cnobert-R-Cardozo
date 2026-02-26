@@ -38,10 +38,10 @@ public class Pong : Game
         _ball.Initialize(new Vector2(50, 65), new Vector2(1, -2), _Scale, _playAreaBoundingBox);
 
         _leftPaddle = new Paddle();
-        _leftPaddle.Initialize(new Vector2(110 * _Scale, 75 * _Scale), _Scale, _playAreaBoundingBox);
+        _leftPaddle.Initialize(new Vector2(10 * _Scale, 75 * _Scale), _Scale, _playAreaBoundingBox);
 
         _rightPaddle = new Paddle();
-        _rightPaddle.Initialize(new Vector2(210 * _Scale, 75 * _Scale), _Scale, _playAreaBoundingBox);
+        _rightPaddle.Initialize(new Vector2(240 * _Scale, 75 * _Scale), _Scale, _playAreaBoundingBox);
         
         base.Initialize();
     }

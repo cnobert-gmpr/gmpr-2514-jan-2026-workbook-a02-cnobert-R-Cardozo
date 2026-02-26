@@ -9,7 +9,7 @@ namespace Lesson07_1;
 public class Ball
 {
     private const int _WidthAndHeight = 7;
-    private const int _Speed = 50;
+    private const int _Speed = 45;
     private const int _CollisionTimerIntervalMillis = 400;
     private Texture2D _texture;
     private Vector2 _dimensions, _position, _direction;
