@@ -101,11 +101,11 @@ public class Pong : Game
         if (_ball.ProcessCollision(_leftPaddle.BoundingBox))
         {
             //_hud.Paddle01Score++;
-            this.Glow();
+            //this.Glow();
         }else if (_ball.ProcessCollision(_rightPaddle.BoundingBox))
         {
             //_hud.Paddle01Score++;
-            this.Glow();
+            //this.Glow();
         }
 
         base.Update(gameTime);
