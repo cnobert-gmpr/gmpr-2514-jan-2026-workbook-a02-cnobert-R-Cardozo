@@ -1,4 +1,5 @@
 ﻿using System.Net.Mime;
+using System.Numerics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -25,6 +26,8 @@ public class MosquitoAttackGame : Game
         _graphics.PreferredBackBufferWidth = _WindowWidth;
         _graphics.PreferredBackBufferHeight = _WindowHeight;
         _graphics.ApplyChanges();
+
+        _cannon.Initialize(new Vector2(50, 325));
 
         base.Initialize();
     }
