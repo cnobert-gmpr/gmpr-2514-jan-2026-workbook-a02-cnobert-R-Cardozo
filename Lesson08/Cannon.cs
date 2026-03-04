@@ -29,9 +29,9 @@ public class Cannon
 
     internal void Draw(SpriteBatch spriteBatch)
     {
-        if(_animation != nulll)
+        if(_animation != null)
         {
-            _animation.Draw(spriteBatch, _position, Sprite.Effects.None);
+            _animation.Draw(spriteBatch, _position, SpriteEffects.None);
         }
     }
 }
