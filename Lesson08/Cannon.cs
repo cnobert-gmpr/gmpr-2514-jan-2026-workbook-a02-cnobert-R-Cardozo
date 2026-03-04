@@ -10,4 +10,9 @@ public class Cannon
     private SimpleAnimation _animation;
     private Vector2 _position;
     private Point _dimensions;
+
+    internal void Initialize(Vector2 position)
+    {
+        _position = position;
+    }
 }
