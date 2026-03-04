@@ -16,6 +16,8 @@ public class Cannon
 
     internal void LoadContent(ContentManager content)
     {
-        Texture2D _texture = content.Load<Texture2D>("Cannon");
+        Texture2D texture = content.Load<Texture2D>("Cannon");
+        _dimensions = new Point(texture.Width /4, texture.Height);
+        _animation = new SimpleAnimation(texture, _dimensions.X, _dimensions.Y, 4, 2);
     }
 }
