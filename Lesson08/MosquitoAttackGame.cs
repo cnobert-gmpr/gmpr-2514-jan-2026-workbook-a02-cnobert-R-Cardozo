@@ -13,6 +13,7 @@ public class MosquitoAttackGame : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Texture2D _background;
+    private SpriteFont _font;
 
     public MosquitoAttackGame()
     {
@@ -34,6 +35,7 @@ public class MosquitoAttackGame : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _background = Content.Load<Texture2D>("Background");
+        _font = Content.Load<SpriteFont>("SystemArialFont");
     }
 
     protected override void Update(GameTime gameTime)
