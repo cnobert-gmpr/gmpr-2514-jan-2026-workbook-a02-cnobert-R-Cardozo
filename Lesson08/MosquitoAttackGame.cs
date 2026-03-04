@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Net.Mime;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -6,8 +7,10 @@ namespace Lesson08;
 
 public class MosquitoAttackGame : Game
 {
+    private const int _WindowWidth = 550, _WindowHeight = 400;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    private Texture2D _background;
 
     public MosquitoAttackGame()
     {
@@ -18,7 +21,9 @@ public class MosquitoAttackGame : Game
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
+        _graphics.PreferredBackBufferWidth = _WindowWidth;
+        _graphics.PreferredBackBufferHeight = _WindowHeight;
+        _graphics.ApplyChanges();
 
         base.Initialize();
     }
@@ -26,8 +31,7 @@ public class MosquitoAttackGame : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        // TODO: use this.Content to load your game content here
+        _background = Content.Load<Texture2D>("Background");
     }
 
     protected override void Update(GameTime gameTime)
