@@ -1,5 +1,4 @@
 ﻿using System.Net.Mime;
-using System.Numerics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,6 +12,7 @@ public class MosquitoAttackGame : Game
     private SpriteBatch _spriteBatch;
     private Texture2D _background;
     private SpriteFont _font;
+    public Cannon _cannon;
 
     public MosquitoAttackGame()
     {
