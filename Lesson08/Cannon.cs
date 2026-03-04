@@ -16,6 +16,6 @@ public class Cannon
 
     internal void LoadContent(ContentManager content)
     {
-        
+        Texture2D _texture = content.Load<Texture2D>("Cannon");
     }
 }
