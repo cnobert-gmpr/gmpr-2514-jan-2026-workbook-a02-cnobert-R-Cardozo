@@ -52,6 +52,7 @@ public class MosquitoAttackGame : Game
         _spriteBatch.Begin();
         
         _spriteBatch.Draw(_background, Vector2.Zero, Color.White); // To tint an image, you can use a colour other than white!
+        _cannon.Draw(_spriteBatch);
 
         _spriteBatch.End();
         base.Draw(gameTime);
