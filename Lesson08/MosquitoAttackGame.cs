@@ -27,6 +27,7 @@ public class MosquitoAttackGame : Game
         _graphics.PreferredBackBufferHeight = _WindowHeight;
         _graphics.ApplyChanges();
 
+        _cannon = new Cannon();
         _cannon.Initialize(new Vector2(50, 325));
 
         base.Initialize();
@@ -41,8 +42,7 @@ public class MosquitoAttackGame : Game
 
     protected override void Update(GameTime gameTime)
     {
-        
-
+        _cannon.Update(gameTime);
         base.Update(gameTime);
     }
 
