@@ -1,5 +1,3 @@
-using System.Drawing;
-using System.Numerics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,5 +12,10 @@ public class Cannon
     internal void Initialize(Vector2 position)
     {
         _position = position;
+    }
+
+    internal void LoadContent(ContentManager content)
+    {
+        
     }
 }
