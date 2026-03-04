@@ -5,5 +5,5 @@ namespace Lesson08;
 
 public class Cannon
 {
-    
+    private SimpleAnimation _animation;
 }
