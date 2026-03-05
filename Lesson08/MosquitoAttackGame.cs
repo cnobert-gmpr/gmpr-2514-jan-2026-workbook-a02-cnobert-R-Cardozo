@@ -15,6 +15,7 @@ public class MosquitoAttackGame : Game
 
     // enum - used to determine states of the game (datatype)
     private enum GameState { Playing, Paused, Over }
+    private GameState _state;
 
     public Cannon _cannon;
 
