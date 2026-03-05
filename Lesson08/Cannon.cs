@@ -1,4 +1,3 @@
-using System.Numerics;
 using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
