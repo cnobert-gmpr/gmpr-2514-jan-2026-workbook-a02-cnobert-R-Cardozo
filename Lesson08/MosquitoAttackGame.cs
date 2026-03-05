@@ -15,7 +15,7 @@ public class MosquitoAttackGame : Game
 
     // enum - used to determine states of the game (datatype)
     private enum GameState { Playing, Paused, Over }
-    private GameState _state;
+    private GameState _gameState;
 
     public Cannon _cannon;
 
@@ -36,7 +36,7 @@ public class MosquitoAttackGame : Game
         _cannon.Initialize(new Vector2(50, 325), 150);
 
         // Sets state of game on startup
-        _state = GameState.Playing;
+        _gameState = GameState.Playing;
 
         base.Initialize();
     }
@@ -65,6 +65,19 @@ public class MosquitoAttackGame : Game
         else
         {
             _cannon.Direction = Vector2.Zero;
+        }
+        #endregion
+
+        #region Update GameState
+        // Update GameState
+        switch (_gameState)
+        {
+            case GameState.Playing:
+                break;
+            case GameState.Paused:
+                break;
+            case GameState.Over:
+                break;
         }
         #endregion
 
