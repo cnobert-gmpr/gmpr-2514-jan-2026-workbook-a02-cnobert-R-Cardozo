@@ -80,6 +80,7 @@ public class MosquitoAttackGame : Game
                 if(kbState.IsKeyDown(Keys.P) && _kbPreviousState.IsKeyUp(Keys.P))
                 {
                     _gameState = GameState.Paused;
+                    _message = "Game paused. Press [p] to continue.";
                 }
 
                 #endregion
