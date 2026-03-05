@@ -1,4 +1,6 @@
-﻿using System.Net.Mime;
+﻿using System.Drawing;
+using System.Net.Mime;
+using System.Numerics;
 using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -122,6 +124,7 @@ public class MosquitoAttackGame : Game
             case GameState.Paused:
                 _spriteBatch.Draw(_background, Vector2.Zero, Color.White);
                 _cannon.Draw(_spriteBatch);
+                _spriteBatch.DrawString(_font, _message, new Vector2(10, 10), Color.White);
 
                 break;
 
