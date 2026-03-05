@@ -28,7 +28,7 @@ public class MosquitoAttackGame : Game
         _graphics.ApplyChanges();
 
         _cannon = new Cannon();
-        _cannon.Initialize(new Vector2(50, 325), 50);
+        _cannon.Initialize(new Vector2(50, 325), 150);
 
         base.Initialize();
     }
