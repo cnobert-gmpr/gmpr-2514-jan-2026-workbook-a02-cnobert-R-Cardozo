@@ -135,7 +135,7 @@ public class MosquitoAttackGame : Game
         base.Draw(gameTime);
     }
 
-    private bool Pressed(Keys Key)
+    private bool Pressed(Keys key)
     {
         return _kbCurrentState.IsKeyDown(key) && _kbPreviousState.IsKeyUp(key);
                 
