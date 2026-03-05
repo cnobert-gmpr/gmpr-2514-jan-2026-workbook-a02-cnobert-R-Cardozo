@@ -18,6 +18,7 @@ public class Cannon
         {
             // Ensure cannon only moves horizontally
             value.Y = 0;
+            _direction = value;
         }
     }
 
@@ -40,14 +41,14 @@ public class Cannon
 
         if (kbState.IsKeyDown(Keys.A))
         {
-            Cannon.Direction = new Vector2(-1, 0);
+            Direction = new Vector2(-1, 0);
         }else if (kbState.IsKeyDown(Keys.D))
         {
-            Cannon.Direction = new Vector2(1, 0);
+            Direction = new Vector2(1, 0);
         }
         else
         {
-            Cannon.Direction = Vector2.Zero;
+            Direction = Vector2.Zero;
         }
         #endregion
 
