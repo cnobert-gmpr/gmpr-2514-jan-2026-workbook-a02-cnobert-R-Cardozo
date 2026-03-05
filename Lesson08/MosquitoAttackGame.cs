@@ -89,6 +89,18 @@ public class MosquitoAttackGame : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin();
+
+        #region Update Game State
+        switch (_gameState)
+        {
+            case GameState.Playing:
+                break;
+            case GameState.Paused:
+                break;
+            case GameState.Over:
+                break;
+        }
+        #endregion
         
         _spriteBatch.Draw(_background, Vector2.Zero, Color.White); // To tint an image, you can use a colour other than white!
         _cannon.Draw(_spriteBatch);
