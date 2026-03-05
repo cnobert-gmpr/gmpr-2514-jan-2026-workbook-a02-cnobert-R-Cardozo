@@ -49,22 +49,6 @@ public class Cannon
 
     internal void Update(GameTime gameTime)
     {
-        #region Keyboard Input
-        KeyboardState kbState = Keyboard.GetState();
-
-        if (kbState.IsKeyDown(Keys.A))
-        {
-            Direction = new Vector2(-1, 0);
-        }else if (kbState.IsKeyDown(Keys.D))
-        {
-            Direction = new Vector2(1, 0);
-        }
-        else
-        {
-            Direction = Vector2.Zero;
-        }
-        #endregion
-
         float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
         _position += _direction * _speed * dt;
 

@@ -51,6 +51,23 @@ public class MosquitoAttackGame : Game
 
     protected override void Update(GameTime gameTime)
     {
+        
+        #region Keyboard Input
+        KeyboardState kbState = Keyboard.GetState();
+
+        if (kbState.IsKeyDown(Keys.A))
+        {
+            _cannon.Direction = new Vector2(-1, 0);
+        }else if (kbState.IsKeyDown(Keys.D))
+        {
+            _cannon.DDirection = new Vector2(1, 0);
+        }
+        else
+        {
+            _cannon.DDirection = Vector2.Zero;
+        }
+        #endregion
+
         _cannon.Update(gameTime);
         base.Update(gameTime);
     }
