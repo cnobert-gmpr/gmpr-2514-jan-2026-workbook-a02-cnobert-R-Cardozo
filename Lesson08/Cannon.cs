@@ -23,9 +23,10 @@ public class Cannon
         }
     }
 
-    internal void Initialize(Vector2 position)
+    internal void Initialize(Vector2 position, float speed)
     {
         _position = position;
+        _speed = speed;
     }
 
     internal void LoadContent(ContentManager content)
