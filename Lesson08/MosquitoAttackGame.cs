@@ -12,6 +12,10 @@ public class MosquitoAttackGame : Game
     private SpriteBatch _spriteBatch;
     private Texture2D _background;
     private SpriteFont _font;
+
+    // enum - used to determine states of the game (datatype)
+    private enum GameState { Playing, Paused, Over }
+
     public Cannon _cannon;
 
     public MosquitoAttackGame()
