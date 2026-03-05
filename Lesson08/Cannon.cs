@@ -7,8 +7,9 @@ namespace Lesson08;
 public class Cannon
 {
     private SimpleAnimation _animation;
-    private Vector2 _position;
+    private Vector2 _position, _direction;
     private Point _dimensions;
+    private float _speed;
 
     internal void Initialize(Vector2 position)
     {
@@ -18,12 +19,14 @@ public class Cannon
     internal void LoadContent(ContentManager content)
     {
         Texture2D texture = content.Load<Texture2D>("Cannon");
-        _dimensions = new Point(texture.Width /4, texture.Height);
+        _dimensions = new Point(texture.Width / 4, texture.Height);
         _animation = new SimpleAnimation(texture, _dimensions.X, _dimensions.Y, 4, 2);
     }
 
     internal void Update(GameTime gameTime)
     {
+        float dt = (float) gameTime.ElapsedGameTime.Seconds;
+
         _animation.Update(gameTime);
     }
 
