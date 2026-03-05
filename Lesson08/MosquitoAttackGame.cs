@@ -1,4 +1,5 @@
 ﻿using System.Net.Mime;
+using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,6 +13,8 @@ public class MosquitoAttackGame : Game
     private SpriteBatch _spriteBatch;
     private Texture2D _background;
     private SpriteFont _font;
+    private string _message = "";
+    private KeyboardState _kbPreviousState;
 
     // enum - used to determine states of the game (datatype)
     private enum GameState { Playing, Paused, Over }
@@ -73,12 +76,20 @@ public class MosquitoAttackGame : Game
                     _cannon.Direction = Vector2.Zero;
                 }
                 _cannon.Update(gameTime);
+
+                if(kbState.IsKeyDown(Keys.P) && _kbPreviousState.IsKeyUp(Keys.P))
+                {
+                    _gameState = GameState.Paused;
+                }
+
                 #endregion
                 break;
             case GameState.Paused:
                 break;
             case GameState.Over:
                 break;
+            
+            kbState = _kbPreviousState;
         }
         #endregion
 
