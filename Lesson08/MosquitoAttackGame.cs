@@ -77,7 +77,7 @@ public class MosquitoAttackGame : Game
                 }
                 _cannon.Update(gameTime);
 
-                if(_kbCurrentState.IsKeyDown(Keys.P) && _kbPreviousState.IsKeyUp(Keys.P))
+                if(Pressed(Keys.P))
                 {
                     _gameState = GameState.Paused;
                     _message = "Game paused. Press [p] to continue.";
@@ -86,7 +86,7 @@ public class MosquitoAttackGame : Game
                 #endregion
                 break;
             case GameState.Paused:
-                if(_kbCurrentState.IsKeyDown(Keys.P) && _kbPreviousState.IsKeyUp(Keys.P))
+                if(Pressed(Keys.P))
                 {
                     _gameState = GameState.Playing;
                     _message = "";
