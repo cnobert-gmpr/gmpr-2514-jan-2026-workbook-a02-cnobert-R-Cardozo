@@ -35,6 +35,9 @@ public class MosquitoAttackGame : Game
         _cannon = new Cannon();
         _cannon.Initialize(new Vector2(50, 325), 150);
 
+        // Sets state of game on startup
+        _state = GameState.Playing;
+
         base.Initialize();
     }
 

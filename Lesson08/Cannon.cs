@@ -22,6 +22,7 @@ public class Cannon
             value.Y = 0;
             _direction = value;
 
+            // Reverses animation of cannon based on direction it's moving
             if(_direction.X < 0)
             {
                 _animation.Reverse = true;
