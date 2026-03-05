@@ -1,3 +1,5 @@
+using System.Numerics;
+using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,6 +27,22 @@ public class Cannon
 
     internal void Update(GameTime gameTime)
     {
+        #region Keyboard Input
+        KeyboardState kbState = Keyboard.GetState();
+
+        if (kbState.IsKeyDown(Keys.A))
+        {
+            _cannon.Direction = new Vector2(-1, 0);
+        }else if (kbState.IsKeyDown(Keys.D))
+        {
+            _cannon.Direction = new Vector2(1, 0);
+        }
+        else
+        {
+            _cannon.Direction = Vector2.Zero;
+        }
+        #endregion
+
         float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
         _position += _direction * _speed * dt;
 
