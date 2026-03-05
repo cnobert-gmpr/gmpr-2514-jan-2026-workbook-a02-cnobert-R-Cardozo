@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using Microsoft.Win32;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,6 +21,15 @@ public class Cannon
             // Ensure cannon only moves horizontally
             value.Y = 0;
             _direction = value;
+
+            if(_direction.X < 0)
+            {
+                _animation.Reverse = true;
+            }
+            else
+            {
+                _animation.Reverse = false;
+            }
         }
     }
 
