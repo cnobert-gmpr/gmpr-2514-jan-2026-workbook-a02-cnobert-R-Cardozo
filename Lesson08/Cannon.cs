@@ -25,7 +25,7 @@ public class Cannon
 
     internal void Update(GameTime gameTime)
     {
-        float dt = (float) gameTime.ElapsedGameTime.Seconds;
+        float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
 
         _animation.Update(gameTime);
     }
