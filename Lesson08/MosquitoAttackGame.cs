@@ -14,7 +14,7 @@ public class MosquitoAttackGame : Game
     private Texture2D _background;
     private SpriteFont _font;
     private string _message = "";
-    private KeyboardState _kbPreviousState;
+    private KeyboardState _kbCurrentState, _kbPreviousState;
 
     // enum - used to determine states of the game (datatype)
     private enum GameState { Playing, Paused, Over }
@@ -55,7 +55,7 @@ public class MosquitoAttackGame : Game
     protected override void Update(GameTime gameTime)
     {
         
-        KeyboardState kbState = Keyboard.GetState();
+        _kbCurrentState = Keyboard.GetState();
 
         #region Update GameState
         // Update GameState
@@ -64,10 +64,10 @@ public class MosquitoAttackGame : Game
             case GameState.Playing:
                 #region Keyboard Input
                 // Updates cannon direction ONLY if state is 'Playing' 
-                if (kbState.IsKeyDown(Keys.A))
+                if (_kbCurrentState.IsKeyDown(Keys.A))
                 {
                     _cannon.Direction = new Vector2(-1, 0);
-                }else if (kbState.IsKeyDown(Keys.D))
+                }else if (_kbCurrentState.IsKeyDown(Keys.D))
                 {
                     _cannon.Direction = new Vector2(1, 0);
                 }
@@ -77,7 +77,7 @@ public class MosquitoAttackGame : Game
                 }
                 _cannon.Update(gameTime);
 
-                if(kbState.IsKeyDown(Keys.P) && _kbPreviousState.IsKeyUp(Keys.P))
+                if(_kbCurrentState.IsKeyDown(Keys.P) && _kbPreviousState.IsKeyUp(Keys.P))
                 {
                     _gameState = GameState.Paused;
                     _message = "Game paused. Press [p] to continue.";
@@ -86,7 +86,7 @@ public class MosquitoAttackGame : Game
                 #endregion
                 break;
             case GameState.Paused:
-                if(kbState.IsKeyDown(Keys.P) && _kbPreviousState.IsKeyUp(Keys.P))
+                if(_kbCurrentState.IsKeyDown(Keys.P) && _kbPreviousState.IsKeyUp(Keys.P))
                 {
                     _gameState = GameState.Playing;
                     _message = "";
@@ -96,7 +96,7 @@ public class MosquitoAttackGame : Game
             case GameState.Over:
                 break;
             
-            kbState = _kbPreviousState;
+            _kbCurrentState = _kbPreviousState;
         }
         #endregion
 
@@ -133,5 +133,11 @@ public class MosquitoAttackGame : Game
 
         _spriteBatch.End();
         base.Draw(gameTime);
+    }
+
+    private bool Pressed(Keys Key)
+    {
+        return _kbCurrentState.IsKeyDown(key) && _kbPreviousState.IsKeyUp(key);
+                
     }
 }
