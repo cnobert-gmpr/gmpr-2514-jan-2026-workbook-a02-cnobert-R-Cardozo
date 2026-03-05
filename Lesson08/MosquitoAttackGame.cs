@@ -86,6 +86,12 @@ public class MosquitoAttackGame : Game
                 #endregion
                 break;
             case GameState.Paused:
+                if(kbState.IsKeyDown(Keys.P) && _kbPreviousState.IsKeyUp(Keys.P))
+                {
+                    _gameState = GameState.Playing;
+                    _message = "";
+                }
+
                 break;
             case GameState.Over:
                 break;
