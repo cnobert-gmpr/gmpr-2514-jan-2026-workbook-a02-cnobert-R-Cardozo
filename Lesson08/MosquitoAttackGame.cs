@@ -52,27 +52,28 @@ public class MosquitoAttackGame : Game
     protected override void Update(GameTime gameTime)
     {
         
-        #region Keyboard Input
         KeyboardState kbState = Keyboard.GetState();
-
-        if (kbState.IsKeyDown(Keys.A))
-        {
-            _cannon.Direction = new Vector2(-1, 0);
-        }else if (kbState.IsKeyDown(Keys.D))
-        {
-            _cannon.Direction = new Vector2(1, 0);
-        }
-        else
-        {
-            _cannon.Direction = Vector2.Zero;
-        }
-        #endregion
 
         #region Update GameState
         // Update GameState
         switch (_gameState)
         {
             case GameState.Playing:
+                #region Keyboard Input
+                // Updates cannon direction ONLY if state is 'Playing' 
+                if (kbState.IsKeyDown(Keys.A))
+                {
+                    _cannon.Direction = new Vector2(-1, 0);
+                }else if (kbState.IsKeyDown(Keys.D))
+                {
+                    _cannon.Direction = new Vector2(1, 0);
+                }
+                else
+                {
+                    _cannon.Direction = Vector2.Zero;
+                }
+                _cannon.Update(gameTime);
+                #endregion
                 break;
             case GameState.Paused:
                 break;
@@ -90,7 +91,7 @@ public class MosquitoAttackGame : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin();
 
-        #region Update Game State
+        #region Update GameState
         switch (_gameState)
         {
             case GameState.Playing:
