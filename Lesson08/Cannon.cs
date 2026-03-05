@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -11,6 +12,15 @@ public class Cannon
     private Vector2 _position, _direction;
     private Point _dimensions;
     private float _speed;
+
+    internal Vector2 Direction
+    {
+        set
+        {
+            // Ensure cannon only moves horizontally
+            value.Y = 0;
+        }
+    }
 
     internal void Initialize(Vector2 position)
     {
