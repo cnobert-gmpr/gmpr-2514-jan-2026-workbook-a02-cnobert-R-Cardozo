@@ -40,14 +40,14 @@ public class Cannon
 
         if (kbState.IsKeyDown(Keys.A))
         {
-            _cannon.Direction = new Vector2(-1, 0);
+            Cannon.Direction = new Vector2(-1, 0);
         }else if (kbState.IsKeyDown(Keys.D))
         {
-            _cannon.Direction = new Vector2(1, 0);
+            Cannon.Direction = new Vector2(1, 0);
         }
         else
         {
-            _cannon.Direction = Vector2.Zero;
+            Cannon.Direction = Vector2.Zero;
         }
         #endregion
 
