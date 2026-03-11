@@ -133,7 +133,7 @@ public class MosquitoAttackGame : Game
                 _spriteBatch.Draw(_background, Vector2.Zero, Color.Gray);
                 _cannon.Draw(_spriteBatch);
                 _mosquito.Draw(_spriteBatch);
-                _spriteBatch.DrawString(_font, _message, new Vector2(120, (_WindowHeight / 2) - 10), Color.White);
+                _spriteBatch.DrawString(_font, _message, new Vector2(120, (_WindowHeight / 2) - 15), Color.White);
 
                 break;
 
