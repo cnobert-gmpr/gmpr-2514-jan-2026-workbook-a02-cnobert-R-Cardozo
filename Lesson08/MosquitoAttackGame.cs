@@ -21,6 +21,7 @@ public class MosquitoAttackGame : Game
     private GameState _gameState;
 
     public Cannon _cannon;
+    public Mosquito _mosquito;
 
     public MosquitoAttackGame()
     {
