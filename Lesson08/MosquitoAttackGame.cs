@@ -130,10 +130,10 @@ public class MosquitoAttackGame : Game
                 break;
 
             case GameState.Paused:
-                _spriteBatch.Draw(_background, Vector2.Zero, Color.White);
+                _spriteBatch.Draw(_background, Vector2.Zero, Color.Gray);
                 _cannon.Draw(_spriteBatch);
                 _mosquito.Draw(_spriteBatch);
-                _spriteBatch.DrawString(_font, _message, new Vector2(10, 10), Color.White);
+                _spriteBatch.DrawString(_font, _message, new Vector2(120, (_WindowHeight / 2) - 10), Color.White);
 
                 break;
 
