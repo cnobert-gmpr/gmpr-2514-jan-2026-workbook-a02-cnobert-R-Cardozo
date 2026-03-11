@@ -1,5 +1,4 @@
 using System.IO.Pipes;
-using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using Microsoft.Win32;
