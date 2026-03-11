@@ -81,6 +81,7 @@ public class MosquitoAttackGame : Game
                     _cannon.Direction = Vector2.Zero;
                 }
                 _cannon.Update(gameTime);
+                _mosquito.Update(gameTime);
 
                 if(Pressed(Keys.P))
                 {
@@ -109,7 +110,6 @@ public class MosquitoAttackGame : Game
         #endregion
 
         _cannon.Update(gameTime);
-        _mosquito.Update(gameTime);
         base.Update(gameTime);
     }
 
