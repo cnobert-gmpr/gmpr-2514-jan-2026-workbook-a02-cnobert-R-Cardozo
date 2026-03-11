@@ -39,6 +39,9 @@ public class MosquitoAttackGame : Game
         _cannon = new Cannon();
         _cannon.Initialize(new Vector2(50, 325), 150);
 
+        _mosquito = new Mosquito();
+        _mosquito.Initialize(new Vector2(150, (_WindowHeight / 2) - 125), 235);
+
         // Sets state of game on startup
         _gameState = GameState.Playing;
 
@@ -51,6 +54,7 @@ public class MosquitoAttackGame : Game
         _background = Content.Load<Texture2D>("Background");
         _font = Content.Load<SpriteFont>("SystemArialFont");
         _cannon.LoadContent(Content);
+        _mosquito.LoadContent(Content);
     }
 
     protected override void Update(GameTime gameTime)
@@ -101,7 +105,11 @@ public class MosquitoAttackGame : Game
         }
         #endregion
 
+        #region Mosquito Movement
+        #endregion
+
         _cannon.Update(gameTime);
+        _mosquito.Update(gameTime);
         base.Update(gameTime);
     }
 
@@ -117,12 +125,14 @@ public class MosquitoAttackGame : Game
                 // To tint an image, you can use a colour other than white!
                 _spriteBatch.Draw(_background, Vector2.Zero, Color.White);
                 _cannon.Draw(_spriteBatch);
+                _mosquito.Draw(_spriteBatch);
 
                 break;
 
             case GameState.Paused:
                 _spriteBatch.Draw(_background, Vector2.Zero, Color.White);
                 _cannon.Draw(_spriteBatch);
+                _mosquito.Draw(_spriteBatch);
                 _spriteBatch.DrawString(_font, _message, new Vector2(10, 10), Color.White);
 
                 break;
