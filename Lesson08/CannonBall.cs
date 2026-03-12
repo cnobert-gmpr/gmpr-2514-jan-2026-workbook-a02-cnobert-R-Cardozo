@@ -56,7 +56,7 @@ public class CannonBall{
         switch (_state)
         {
             case State.Flying:
-                spriteBatch.Draw(_texture, _position, Color.White)
+                spriteBatch.Draw(_texture, _position, Color.White);
                 break;
             case State.NotFlying:
                 break;
