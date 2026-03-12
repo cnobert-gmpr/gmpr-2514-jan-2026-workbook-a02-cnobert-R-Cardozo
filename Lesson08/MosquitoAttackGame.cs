@@ -114,6 +114,11 @@ public class MosquitoAttackGame : Game
                     _message = "Game paused. Press [p] to continue.";
                 }
 
+                if (Pressed(Keys.Space))
+                {
+                    _cannon.Shoot();
+                }
+
                 #endregion
                 break;
             case GameState.Paused:
