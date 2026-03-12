@@ -37,7 +37,7 @@ public class MosquitoAttackGame : Game
         _graphics.ApplyChanges();
 
         _cannon = new Cannon();
-        _cannon.Initialize(new Vector2(50, 325), 235);
+        _cannon.Initialize(new Vector2(50, 325), 235, BoundingBox);
 
         #region randomize mosquito generation
         _mosquitoes = new Mosquito[_NumMosquitos];
