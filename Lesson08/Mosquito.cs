@@ -13,43 +13,35 @@ public class Mosquito
 {
     private SimpleAnimation _animation;
     private Vector2 _position, _direction;
-    private Point _dimensions;
     private float _speed;
-    private int _windowWidth;
 
-    internal Vector2 Direction
+    private Rectangle BoundingBox
     {
-        set
+        get
         {
-            value.Y = 0;
-            _direction = value;
-
-            if(_direction.X < 0)
-            {
-                _animation.Reverse = true;
-            }
-            else
-            {
-                _animation.Reverse = false;
-            }
+            return new Rectangle(
+                (int)_position.X,
+                (int)_position.Y,
+                (int)_animation.FrameDimensions.X,
+                (int)_animation.FrameDimensions.Y
+            );
         }
     }
 
-    internal void Initialize(Vector2 position, float speed, int windowWidth)
+    internal void Initialize(Vector2 position, float speed, Vector2 direction, Rectangle gameBoundingBox)
     {
         _position = position;
         _speed = speed;
-
-        _direction = new Vector2(1, 0); // Moves mosquito to the right
-
-        _windowWidth = windowWidth;
+        _direction = direction;
+        _gameBoundingBox = gameBoundingBox;
     }
 
     internal void LoadContent(ContentManager content)
     {
         Texture2D texture = content.Load<Texture2D>("Mosquito");
-        _dimensions = new Point(texture.Width / 11, texture.Height);
-        _animation = new SimpleAnimation(texture, _dimensions.X, _dimensions.Y, 11, 3);
+
+        _animation = new SimpleAnimation(texture, texture.Width / 11, texture.Height, 11, 8f);
+        _animation.Paused = false;
     }
 
     internal void Update(GameTime gameTime)
@@ -57,9 +49,9 @@ public class Mosquito
         float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
         _position += _direction * _speed * dt;
 
-        if(_position.X <= 0 || _position.X + _dimensions.X >= _windowWidth)
+        if(BoundingBox.Left < _gameBoundingBox.Left || BoundingBox.Right > _gameBoundingBox.Right)
         {
-            Direction = new Vector2(-_direction.X, 0); // Changes direction of mosquito
+            _direction.X *= -1;
         }
 
         _animation.Update(gameTime);
@@ -67,9 +59,6 @@ public class Mosquito
 
     internal void Draw(SpriteBatch spriteBatch)
     {
-        if(_animation != null)
-        {
-            _animation.Draw(spriteBatch, _position, SpriteEffects.None);
-        }
+        _animation.Draw(spriteBatch, _position, SpriteEffects.None);
     }
 }
