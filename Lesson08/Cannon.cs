@@ -1,3 +1,5 @@
+using System.Drawing;
+using System.Numerics;
 using System.Security.Cryptography;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
@@ -13,6 +15,9 @@ public class Cannon
     private Vector2 _position, _direction;
     private Point _dimensions;
     private float _speed;
+    private Rectangle _gameBoundingBox;
+
+    private CannonBall _cBall;
 
     internal Vector2 Direction
     {
@@ -34,10 +39,13 @@ public class Cannon
         }
     }
 
-    internal void Initialize(Vector2 position, float speed)
+    internal void Initialize(Vector2 position, float speed, Rectangle gameBoundingBox)
     {
         _position = position;
         _speed = speed;
+        _gameBoundingBox = gameBoundingBox;
+        _cBall = new CannonBall();
+        _cBall.Initialize(_position, 50, new Vector2(0, -1), _gameBoundingBox);
     }
 
     internal void LoadContent(ContentManager content)
@@ -45,6 +53,8 @@ public class Cannon
         Texture2D texture = content.Load<Texture2D>("Cannon");
         _dimensions = new Point(texture.Width / 4, texture.Height);
         _animation = new SimpleAnimation(texture, _dimensions.X, _dimensions.Y, 4, 2);
+
+        _cBall.LoadContent(content);
     }
 
     internal void Update(GameTime gameTime)
@@ -52,7 +62,12 @@ public class Cannon
         float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
         _position += _direction * _speed * dt;
 
-        _animation.Update(gameTime);
+        if(_direction != null)
+        {
+            _animation.Update(gameTime);
+        }
+        _cBall.Update(gameTime);
+
     }
 
     internal void Draw(SpriteBatch spriteBatch)
@@ -61,5 +76,6 @@ public class Cannon
         {
             _animation.Draw(spriteBatch, _position, SpriteEffects.None);
         }
+        _cBall.Draw(spriteBatch);
     }
 }
