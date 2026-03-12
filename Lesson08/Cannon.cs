@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Security.Cryptography;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
@@ -75,5 +76,10 @@ public class Cannon
             _animation.Draw(spriteBatch, _position, SpriteEffects.None);
         }
         _cBall.Draw(spriteBatch);
+    }
+
+    internal void Shoot()
+    {
+        _cBall.Shoot(_position, new Vector2(0, -1));
     }
 }

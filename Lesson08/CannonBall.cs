@@ -20,11 +20,9 @@ public class CannonBall{
         get => new Rectangle((int)_position.X, (int)_position.Y, _texture.Width, _texture.Height);
     }
 
-    internal void Initialize(Vector2 position, float speed, Vector2 direction, Rectangle gameBoundingBox)
+    internal void Initialize(float speed, Rectangle gameBoundingBox)
     {
-        _position = position;
         _speed = speed;
-        _direction = direction;
         _gameBoundingBox = gameBoundingBox;
     }
 
@@ -62,5 +60,12 @@ public class CannonBall{
                 break;
         }
         #endregion
+    }
+
+    internal void Shoot(Vector2 position, Vector2 direction)
+    {
+        _position = position;
+        _direction = direction;
+        _state = State.Flying;
     }
 }
