@@ -1,6 +1,8 @@
-
-
-using System.Drawing;
+using Microsoft.Win32;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Lesson08;
 
@@ -11,6 +13,7 @@ public class CannonBall{
     private Rectangle _gameBoundingBox;
 
     private enum State { Flying, NotFlying };
+    private State _state = State.NotFlying;
 
     internal Rectangle BoundingBox
     {
@@ -33,11 +36,31 @@ public class CannonBall{
     internal void Update(GameTime gameTime)
     {
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        _position += _direction * _speed * dt;
+
+        #region Change state
+        switch (_state)
+        {
+            case State.Flying:
+                _position += _direction * _speed * dt;
+                break;
+            case State.NotFlying:
+                break;
+        }
+        #endregion
+
     }
 
     internal void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_texture, _position, Color.White);
+        #region Change state
+        switch (_state)
+        {
+            case State.Flying:
+                spriteBatch.Draw(_texture, _position, Color.White)
+                break;
+            case State.NotFlying:
+                break;
+        }
+        #endregion
     }
 }
