@@ -15,7 +15,7 @@ public class Cannon
     private float _speed;
     private Rectangle _gameBoundingBox;
 
-    private CannonBall _cBall;
+    private CannonBall[] _cBalls;
 
     internal Vector2 Direction
     {
