@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Security.Cryptography;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
@@ -9,6 +10,7 @@ namespace Lesson08;
 
 public class Cannon
 {
+    private const int _NumCannonBalls = 10;
     private SimpleAnimation _animation;
     private Vector2 _position, _direction;
     private Point _dimensions;
@@ -37,11 +39,24 @@ public class Cannon
         }
     }
 
+    internal Rectangle BoundingBox
+    {
+        
+    }
+
     internal void Initialize(Vector2 position, float speed, Rectangle gameBoundingBox)
     {
         _position = position;
         _speed = speed;
         _gameBoundingBox = gameBoundingBox;
+
+        _cBalls = new CannonBall(_NumCannonBalls);
+        for(int c = 0; c < _NumCannonBalls; c++)
+        {
+            _cBalls[c] = new CannonBall();
+            _cBalls[c].Initialize(50, _gameBoundingBox);
+        }
+
         _cBall = new CannonBall();
         _cBall.Initialize(_position, 50, new Vector2(0, -1), _gameBoundingBox);
     }
