@@ -139,7 +139,7 @@ public class MosquitoAttackGame : Game
         }
         #endregion
         
-        _kbCurrentState = _kbPreviousState;
+        _kbPreviousState = _kbCurrentState;
 
         _cannon.Update(gameTime);
         base.Update(gameTime);

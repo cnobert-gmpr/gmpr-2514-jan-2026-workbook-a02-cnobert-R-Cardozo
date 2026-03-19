@@ -32,7 +32,7 @@ public class CannonBall{
 
     internal void LoadContent(ContentManager content)
     {
-        Texture2D _texture = content.Load<Texture2D>("CannonBall");
+        _texture = content.Load<Texture2D>("CannonBall");
     }
 
     internal void Update(GameTime gameTime)
