@@ -113,8 +113,8 @@ public class Cannon
         {
             if (c.Launchable)
             {
-                float cannonBallPositionX = BoundingBox.Top - BoundingBox.Height;
-                float cannonBallPositionY = BoundingBox.Center.X - BoundingBox.Width / 2;
+                float cannonBallPositionX = BoundingBox.Center.X - c.BoundingBox.Width / 2;
+                float cannonBallPositionY = BoundingBox.Top - c.BoundingBox.Height;
                 Vector2 cannonBallPosition = new Vector2(cannonBallPositionX, cannonBallPositionY);
                 c.Launch(cannonBallPosition, new Vector2(0, -1));
                 return;
