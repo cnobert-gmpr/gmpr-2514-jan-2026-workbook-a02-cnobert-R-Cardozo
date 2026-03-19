@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Numerics;
 using System.Security.Cryptography;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
@@ -41,7 +42,15 @@ public class Cannon
 
     internal Rectangle BoundingBox
     {
-        
+        get
+        {
+            return new Rectangle(
+                (int)_position.X,
+                (int)_position.Y,
+                (int)_animation.FrameDimensions.X,
+                (int)_animation.FrameDimensions.Y
+            )
+        }
     }
 
     internal void Initialize(Vector2 position, float speed, Rectangle gameBoundingBox)
@@ -67,7 +76,10 @@ public class Cannon
         _dimensions = new Point(texture.Width / 4, texture.Height);
         _animation = new SimpleAnimation(texture, _dimensions.X, _dimensions.Y, 4, 2);
 
-        _cBall.LoadContent(content);
+        foreach(CannonBall c in _cBalls)
+        {
+            c.LoadContent(content);
+        }
     }
 
     internal void Update(GameTime gameTime)
@@ -79,7 +91,11 @@ public class Cannon
         {
             _animation.Update(gameTime);
         }
-        _cBall.Update(gameTime);
+
+        foreach(CannonBall c in _cBalls)
+        {
+            c.Update(gameTime);
+        }
 
     }
 
@@ -89,11 +105,27 @@ public class Cannon
         {
             _animation.Draw(spriteBatch, _position, SpriteEffects.None);
         }
-        _cBall.Draw(spriteBatch);
+
+        foreach(CannonBall c in _cBalls)
+        {
+            c.Draw(spriteBatch);
+        }
     }
 
     internal void Shoot()
     {
+        foreach(CannonBall c in _cBalls)
+        {
+            if (c.Launchable)
+            {
+                float cannonBallPositionX = BoundingBox.Top - BoundingBox.Height;
+                float cannonBallPositionY = BoundingBox.Center.X - BoundingBox.Width / 2;
+                Vector2 cannonBallPosition = new Vector2(cannonBallPositionX, cannonBallPositionY);
+                c.Launch(cannonBallPosition, new Vector(0, -1));
+                return;
+            }
+        }
+
         _cBall.Shoot(_position, new Vector2(0, -1));
     }
 }
