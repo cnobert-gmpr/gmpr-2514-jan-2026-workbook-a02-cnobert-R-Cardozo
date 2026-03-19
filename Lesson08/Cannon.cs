@@ -47,7 +47,7 @@ public class Cannon
                 (int)_position.Y,
                 (int)_animation.FrameDimensions.X,
                 (int)_animation.FrameDimensions.Y
-            )
+            );
         }
     }
 
