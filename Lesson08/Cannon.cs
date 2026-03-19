@@ -57,15 +57,12 @@ public class Cannon
         _speed = speed;
         _gameBoundingBox = gameBoundingBox;
 
-        _cBalls = new CannonBall(_NumCannonBalls);
+        _cBalls = new CannonBall[_NumCannonBalls];
         for(int c = 0; c < _NumCannonBalls; c++)
         {
             _cBalls[c] = new CannonBall();
             _cBalls[c].Initialize(50, _gameBoundingBox);
         }
-
-        _cBall = new CannonBall();
-        _cBall.Initialize(_position, 50, new Vector2(0, -1), _gameBoundingBox);
     }
 
     internal void LoadContent(ContentManager content)
@@ -119,11 +116,9 @@ public class Cannon
                 float cannonBallPositionX = BoundingBox.Top - BoundingBox.Height;
                 float cannonBallPositionY = BoundingBox.Center.X - BoundingBox.Width / 2;
                 Vector2 cannonBallPosition = new Vector2(cannonBallPositionX, cannonBallPositionY);
-                c.Launch(cannonBallPosition, new Vector(0, -1));
+                c.Launch(cannonBallPosition, new Vector2(0, -1));
                 return;
             }
         }
-
-        _cBall.Shoot(_position, new Vector2(0, -1));
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Net.Mime;
+﻿using System;
+using System.Net.Mime;
 using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,6 +23,11 @@ public class MosquitoAttackGame : Game
 
     public Cannon _cannon;
     public Mosquito[] _mosquitoes;
+
+    private Rectangle BoundingBox
+    {
+        get { return new Rectangle(0, 0, _WindowWidth, _WindowHeight); }
+    }
 
     public MosquitoAttackGame()
     {
@@ -48,7 +54,6 @@ public class MosquitoAttackGame : Game
         }
 
         Random random = new Random();
-
         foreach (Mosquito mosquito in _mosquitoes)
         {
             int direction = random.Next(1, 3) == 2 ? -1 : 1;
@@ -131,10 +136,10 @@ public class MosquitoAttackGame : Game
                 break;
             case GameState.Over:
                 break;
-            
-            _kbCurrentState = _kbPreviousState;
         }
         #endregion
+        
+        _kbCurrentState = _kbPreviousState;
 
         _cannon.Update(gameTime);
         base.Update(gameTime);

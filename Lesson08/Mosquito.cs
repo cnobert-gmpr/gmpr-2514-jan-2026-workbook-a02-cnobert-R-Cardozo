@@ -14,6 +14,7 @@ public class Mosquito
     private SimpleAnimation _animation;
     private Vector2 _position, _direction;
     private float _speed;
+    private Rectangle _gameBoundingBox;
 
     private Rectangle BoundingBox
     {
