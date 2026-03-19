@@ -1,5 +1,3 @@
-using System.Drawing;
-using System.Numerics;
 using System.Security.Cryptography;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
