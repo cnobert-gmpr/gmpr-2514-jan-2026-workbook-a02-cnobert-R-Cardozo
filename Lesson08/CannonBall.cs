@@ -18,7 +18,7 @@ public class CannonBall{
     private const float _TrailSpawnInterval = 0.1f;
     private const int _MaxTrailPositions = 8;
 
-    private enum State { Flying, NotFlying };
+    private enum State { Flying, NotFlying }
     private State _state = State.NotFlying;
 
     internal Rectangle BoundingBox
@@ -128,7 +128,7 @@ public class CannonBall{
 
     internal bool ProcessCollision(Rectangle otherBoundingBox)
     {
-        if(_state = State.Flying && BoundingBox.Intersects(otherBoundingBox))
+        if(_state == State.Flying && BoundingBox.Intersects(otherBoundingBox))
         {
             _state = State.NotFlying;
             _trailPositions.Clear();
