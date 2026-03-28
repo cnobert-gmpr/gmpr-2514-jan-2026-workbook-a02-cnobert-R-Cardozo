@@ -35,7 +35,7 @@ public class CannonBall{
         _speed = speed;
         _gameBoundingBox = gameBoundingBox;
 
-        _trailPositions = new list<Vector2>();
+        _trailPositions = new List<Vector2>();
         _trailTimer = 0;
     }
 

@@ -20,7 +20,7 @@ public class Mosquito
     private enum State { Alive, Poofing, Dead };
     private State _state;
 
-    private Rectangle BoundingBox
+    internal Rectangle BoundingBox
     {
         get
         {
