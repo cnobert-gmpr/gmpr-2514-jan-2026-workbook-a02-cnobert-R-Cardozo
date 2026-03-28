@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Security.Cryptography;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
@@ -120,5 +121,17 @@ public class Cannon
                 return;
             }
         }
+    }
+
+    internal bool ProcessCollision(Rectangle boundingBox)
+    {
+        foreach(CannonBall c in _cBalls)
+        {
+            if (c.ProcessCollision(boundingBox))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
