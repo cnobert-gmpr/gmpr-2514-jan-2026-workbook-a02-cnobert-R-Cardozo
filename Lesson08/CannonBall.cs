@@ -1,5 +1,3 @@
-using System.Drawing;
-using System.Numerics;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
