@@ -77,6 +77,7 @@ public class MosquitoAttackGame : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _background = Content.Load<Texture2D>("Background");
         _font = Content.Load<SpriteFont>("SystemArialFont");
+
         _cannon.LoadContent(Content);
         foreach(Mosquito mosquito in _mosquitoes)
         {
@@ -107,11 +108,6 @@ public class MosquitoAttackGame : Game
                 {
                     _cannon.Direction = Vector2.Zero;
                 }
-                _cannon.Update(gameTime);
-                foreach(Mosquito mosquito in _mosquitoes)
-                {
-                    mosquito.Update(gameTime);
-                }
 
                 if(Pressed(Keys.P))
                 {
@@ -125,23 +121,32 @@ public class MosquitoAttackGame : Game
                 }
 
                 #endregion
+
+                _cannon.Update(gameTime);
+                foreach(Mosquito mosquito in _mosquitoes)
+                {
+                    mosquito.Update(gameTime);
+                    if(mosquito.Alive && _cannon.ProcessCollision(mosquito.BoundingBox))
+                    {
+                        mosquito.Die();
+                    }
+                }
                 break;
+
             case GameState.Paused:
                 if(Pressed(Keys.P))
                 {
                     _gameState = GameState.Playing;
                     _message = "";
                 }
-
                 break;
+
             case GameState.Over:
                 break;
         }
         #endregion
         
         _kbPreviousState = _kbCurrentState;
-
-        _cannon.Update(gameTime);
         base.Update(gameTime);
     }
 
@@ -166,12 +171,13 @@ public class MosquitoAttackGame : Game
             case GameState.Paused:
                 _spriteBatch.Draw(_background, Vector2.Zero, Color.Gray);
                 _cannon.Draw(_spriteBatch);
+
+                _spriteBatch.DrawString(_font, _message, new Vector2(120, (_WindowHeight / 2) - 15), Color.White);
+
                 foreach(Mosquito mosquito in _mosquitoes)
                 {
                     mosquito.Draw(_spriteBatch);
                 }
-                _spriteBatch.DrawString(_font, _message, new Vector2(120, (_WindowHeight / 2) - 15), Color.White);
-
                 break;
 
             case GameState.Over:
