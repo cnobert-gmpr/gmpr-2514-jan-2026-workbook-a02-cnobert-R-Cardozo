@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Numerics;
 using System.Security.Cryptography;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
@@ -83,7 +84,7 @@ public class Cannon
         float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
         _position += _direction * _speed * dt;
 
-        if(_direction != null)
+        if(_direction != Vector2.Zero)
         {
             _animation.Update(gameTime);
         }
