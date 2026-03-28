@@ -97,7 +97,7 @@ public class CannonBall{
     {
         for(int c = 0; c < _trailPositions.Count; c++)
         {
-            float alpha = 1f = ((float)(c + 1) / (_trailPositions.Count + 1));
+            float alpha = 1f - ((float)(c + 1) / (_trailPositions.Count + 1));
 
             float scale = 1f - (c * 0.1f);
             if(scale < 0.2f)
