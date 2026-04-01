@@ -20,6 +20,8 @@ public class Mosquito
     private enum State { Alive, Poofing, Dead };
     private State _state;
 
+    private FireBall[] _fireBalls;
+
     internal Rectangle BoundingBox
     {
         get
@@ -42,6 +44,12 @@ public class Mosquito
         _direction = direction;
         _gameBoundingBox = gameBoundingBox;
         _state = State.Alive;
+
+        _fireBalls = new Fireball[NumFireBalls];
+        for(int c = 0; char < NumFireBalls; c++){
+            _fireBalls[c] = new FireBall();
+            _fireBalls[c].Initialize(50, _gameBoundingBox);
+        }
     }
 
     internal void LoadContent(ContentManager content)
