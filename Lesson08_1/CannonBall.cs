@@ -5,9 +5,10 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Lesson08;
+namespace Lesson08_1;
 
-public class CannonBall{
+public class CannonBall
+{
     private Texture2D _texture;
     private Vector2 _position, _direction;
     private float _speed;
@@ -18,7 +19,7 @@ public class CannonBall{
     private const float _TrailSpawnInterval = 0.1f;
     private const int _MaxTrailPositions = 8;
 
-    private enum State { Flying, NotFlying }
+    private enum State { Flying, NotFlying };
     private State _state = State.NotFlying;
 
     internal Rectangle BoundingBox
@@ -41,24 +42,26 @@ public class CannonBall{
 
     internal void LoadContent(ContentManager content)
     {
-        _texture = content.Load<Texture2D>("CannonBall");
+        _texture = content.Load<Texture2D>("Cannonball");
     }
 
     internal void Update(GameTime gameTime)
     {
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        #region Change state
+        #region change state
+
         switch (_state)
         {
             case State.Flying:
                 _position += _direction * _speed * dt;
-
                 _trailTimer += dt;
+
                 if(_trailTimer >= _TrailSpawnInterval)
                 {
                     _trailTimer = 0;
                     _trailPositions.Insert(0, _position);
+
                     if(_trailPositions.Count > _MaxTrailPositions)
                     {
                         _trailPositions.RemoveAt(_trailPositions.Count - 1);
@@ -70,26 +73,32 @@ public class CannonBall{
                     _state = State.NotFlying;
                     _trailPositions.Clear();
                 }
+
                 break;
+
             case State.NotFlying:
                 break;
         }
-        #endregion
 
+        #endregion
     }
 
     internal void Draw(SpriteBatch spriteBatch)
     {
-        #region Change state
+        #region change state
         switch (_state)
         {
             case State.Flying:
                 spriteBatch.Draw(_texture, _position, Color.White);
                 DrawTrail(spriteBatch);
+
                 break;
+            
             case State.NotFlying:
+
                 break;
         }
+
         #endregion
     }
 
@@ -109,10 +118,9 @@ public class CannonBall{
             Vector2 origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
             Vector2 centeredPosition = drawPosition + new Vector2(_texture.Width / 2f, _texture.Height / 2f);
 
-            spriteBatch.Draw
-                (
-                    _texture, centeredPosition, null, Color.Gray * (alpha * 0.5f), 0f, origin, scale, SpriteEffects.None, 0f
-                );
+            spriteBatch.Draw(
+                _texture, centeredPosition, null, Color.Gray * (alpha * 0.5f), 0f, origin, scale, SpriteEffects.None, 0f
+            );
         }
     }
 
@@ -124,6 +132,14 @@ public class CannonBall{
             _direction = direction;
             _state = State.Flying;
         }
+    }
+
+    internal void Reset()
+    {
+        _state = State.NotFlying;
+        _trailPositions.Clear();
+        _position = Vector2.Zero;
+        _direction = Vector2.Zero;
     }
 
     internal bool ProcessCollision(Rectangle otherBoundingBox)

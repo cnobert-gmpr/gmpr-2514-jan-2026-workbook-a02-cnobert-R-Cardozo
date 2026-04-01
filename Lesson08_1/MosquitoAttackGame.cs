@@ -1,24 +1,28 @@
 ﻿using System;
+using System.Data.Common;
 using System.Net.Mime;
 using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Lesson08;
+namespace Lesson08_1;
 
-public class MosquitoAttackGame : Game
+public class MosquitoAttack : Game
 {
     private const int _WindowWidth = 550, _WindowHeight = 400, _NumMosquitos = 10;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+
     private Texture2D _background;
     private SpriteFont _font;
     private string _message = "";
+    private string _winner = "";
     private KeyboardState _kbCurrentState, _kbPreviousState;
+    private Random _random = new Random();
+    private bool _CannonDyingAnimationPlaying = false;
 
-    // enum - used to determine states of the game (datatype)
-    private enum GameState { Playing, Paused, Over }
+    private enum GameState { Menu, Level01, Paused, Over }
     private GameState _gameState;
 
     public Cannon _cannon;
@@ -29,7 +33,7 @@ public class MosquitoAttackGame : Game
         get { return new Rectangle(0, 0, _WindowWidth, _WindowHeight); }
     }
 
-    public MosquitoAttackGame()
+    public MosquitoAttack()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
@@ -45,29 +49,30 @@ public class MosquitoAttackGame : Game
         _cannon = new Cannon();
         _cannon.Initialize(new Vector2(50, 325), 235, BoundingBox);
 
-        #region randomize mosquito generation
+        #region randomize m generation
+
         _mosquitoes = new Mosquito[_NumMosquitos];
 
         for(int c = 0; c < _NumMosquitos; c++)
         {
             _mosquitoes[c] = new Mosquito();
         }
-
-        Random random = new Random();
-        foreach (Mosquito mosquito in _mosquitoes)
+        
+        foreach(Mosquito m in _mosquitoes)
         {
-            int direction = random.Next(1, 3) == 2 ? -1 : 1;
+            int direction = _random.Next(1, 3) == 2 ? -1 : 1;
 
-            int xPosition = random.Next(1, _WindowWidth - 50);
-            int yPosition = random.Next(1, 151);
-            int speed = random.Next(150, 251);
+            int xPosition = _random.Next(1, _WindowWidth - 50);
+            int yPosition = _random.Next(1, 151);
+            int speed = _random.Next(150, 251);
 
-            mosquito.Initialize(new Vector2(xPosition, yPosition), speed, new Vector2(direction, 0), BoundingBox);
+            m.Initialize(new Vector2(xPosition, yPosition), speed, new Vector2(direction, 0), BoundingBox);
         }
+
         #endregion
 
-        // Sets state of game on startup
-        _gameState = GameState.Playing;
+        _gameState = GameState.Menu;
+        _message = GetMenuMessage();
 
         base.Initialize();
     }
@@ -79,37 +84,58 @@ public class MosquitoAttackGame : Game
         _font = Content.Load<SpriteFont>("SystemArialFont");
 
         _cannon.LoadContent(Content);
-        foreach(Mosquito mosquito in _mosquitoes)
+
+        foreach(Mosquito m in _mosquitoes)
         {
-            mosquito.LoadContent(Content);
+            m.LoadContent(Content);
         }
+
     }
 
     protected override void Update(GameTime gameTime)
     {
-        
         _kbCurrentState = Keyboard.GetState();
 
-        #region Update GameState
-        // Update GameState
+        #region update GameState
+
         switch (_gameState)
         {
-            case GameState.Playing:
+            case GameState.Menu:
+                if (Pressed(Keys.P))
+                {
+                    ResetGame();
+                    _gameState = GameState.Level01;
+                    _message = "";
+                }
+
+                break;
+
+            case GameState.Level01:
+            {
                 #region Keyboard Input
-                // Updates cannon direction ONLY if state is 'Playing' 
+
                 if (_kbCurrentState.IsKeyDown(Keys.A))
                 {
                     _cannon.Direction = new Vector2(-1, 0);
-                }else if (_kbCurrentState.IsKeyDown(Keys.D))
+                }
+
+                else if (_kbCurrentState.IsKeyDown(Keys.D))
                 {
                     _cannon.Direction = new Vector2(1, 0);
                 }
+
                 else
                 {
                     _cannon.Direction = Vector2.Zero;
                 }
 
-                if(Pressed(Keys.P))
+                if (Pressed(Keys.M))
+                {
+                    _gameState = GameState.Menu;
+                    _message = "Main Menu\nPress [p] to resume playing.";
+                }
+
+                if (Pressed(Keys.P))
                 {
                     _gameState = GameState.Paused;
                     _message = "Game paused. Press [p] to continue.";
@@ -120,32 +146,116 @@ public class MosquitoAttackGame : Game
                     _cannon.Shoot();
                 }
 
+                if (Pressed(Keys.R))
+                    {
+                        _cannon.Reload();
+                    }
+
                 #endregion
 
                 _cannon.Update(gameTime);
-                foreach(Mosquito mosquito in _mosquitoes)
+
+                foreach(Mosquito m in _mosquitoes)
                 {
-                    mosquito.Update(gameTime);
-                    if(mosquito.Alive && _cannon.ProcessCollision(mosquito.BoundingBox))
+                    m.Update(gameTime);
+
+                    if(m.Alive && _cannon.ProcessCollision(m.BoundingBox))
                     {
-                        mosquito.Die();
+                        m.Die();
                     }
                 }
-                break;
 
-            case GameState.Paused:
-                if(Pressed(Keys.P))
+                foreach(Mosquito m in _mosquitoes)
                 {
-                    _gameState = GameState.Playing;
+                    if (m.Alive && m.ProcessFireballCollision(_cannon.BoundingBox))
+                    {
+                        if (!_CannonDyingAnimationPlaying)
+                        {
+                            _cannon.Die();
+                            _CannonDyingAnimationPlaying = true;
+                        }
+                    }
+                }
+
+                    if (_CannonDyingAnimationPlaying)
+                    {
+                        if(_cannon._state == Cannon.State.Dead)
+                        {
+                            _gameState = GameState.Over;
+                            _winner = "Mosquitoes";
+                            _message = "Game Over\nMosquitoes win!\nPress [m] for menu";
+                            _CannonDyingAnimationPlaying = false;
+                        }
+                    }
+
+                bool allDead = true;
+
+                foreach(Mosquito m in _mosquitoes)
+                {
+                    if (m.Alive)
+                    {
+                        allDead = false;
+                        break;
+                    }
+                }
+
+                if (allDead)
+                {
+                    _gameState = GameState.Over;
+                    _winner = "Player";
+                    _message = _winner == "Player" ? "Game Over\nPlayer wins!\nPress [m] for menu" : "Game Over\nMosquitoes win!\nPress [m] for menu";
+                }
+
+                foreach(Mosquito m in _mosquitoes)
+                {
+                    if(m.Alive && m.BoundingBox.Intersects(_cannon.BoundingBox))
+                    {
+                        _gameState = GameState.Over;
+                        _winner = "Mosquitoes";
+                        _message = "Game Over\nMosquitoes win!\nPress [m] for menu";
+                    }
+                }
+
+                break;
+            }
+            case GameState.Paused:
+            {
+
+                if (Pressed(Keys.M))
+                {
+                    _gameState = GameState.Menu;
+                    _message = GetMenuMessage();
+                }
+
+                if (Pressed(Keys.P))
+                {
+                    _gameState = GameState.Level01;
                     _message = "";
                 }
                 break;
+            }
 
             case GameState.Over:
+            {
+                if (Pressed(Keys.M))
+                {
+                    _gameState = GameState.Menu;
+                    _message = GetMenuMessage();
+                }
+
+                if (Pressed(Keys.P))
+                {
+                    ResetGame();
+                    _gameState = GameState.Level01;
+                    _message = "";
+                }
+
                 break;
+            }
         }
+
         #endregion
-        
+
         _kbPreviousState = _kbCurrentState;
         base.Update(gameTime);
     }
@@ -155,34 +265,54 @@ public class MosquitoAttackGame : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin();
 
-        #region Update GameState
+        #region update GameState
+
         switch (_gameState)
         {
-            case GameState.Playing:
-                // To tint an image, you can use a colour other than white!
+            case GameState.Menu:
+
+                _spriteBatch.DrawString(_font, _message, GetCenteredPosition(_message),Color.White);
+                
+                break;
+
+            case GameState.Level01:
                 _spriteBatch.Draw(_background, Vector2.Zero, Color.White);
-                _cannon.Draw(_spriteBatch);
-                foreach(Mosquito mosquito in _mosquitoes)
+                _cannon.Draw(_spriteBatch, Color.White);
+
+                foreach (Mosquito m in _mosquitoes)
                 {
-                    mosquito.Draw(_spriteBatch);
+                    m.Draw(_spriteBatch);
                 }
+
+                _spriteBatch.DrawString(_font, "Press [p] to pause, and [m] to go to main menu", new Vector2(125, _WindowHeight - 20), Color.White);
+
+                _spriteBatch.DrawString(_font, $"Ammo: {_cannon.Ammo}/{_cannon.MaxAmmo}", new Vector2(10, _WindowHeight - 40), Color.White);
+                if (_cannon.IsReloading)
+                {
+                    _spriteBatch.DrawString(_font, "Reloading Ammo..", new Vector2(10, 10), Color.Bisque);
+                }
+
                 break;
 
             case GameState.Paused:
                 _spriteBatch.Draw(_background, Vector2.Zero, Color.Gray);
-                _cannon.Draw(_spriteBatch);
+                _cannon.Draw(_spriteBatch, Color.Gray);                
 
-                _spriteBatch.DrawString(_font, _message, new Vector2(120, (_WindowHeight / 2) - 15), Color.White);
+                _spriteBatch.DrawString(_font, _message, GetCenteredPosition(_message),Color.White);
 
-                foreach(Mosquito mosquito in _mosquitoes)
+                foreach (Mosquito m in _mosquitoes)
                 {
-                    mosquito.Draw(_spriteBatch);
+                    m.Draw(_spriteBatch);
                 }
-                break;
 
+                break;
+            
             case GameState.Over:
+                _spriteBatch.DrawString(_font, _message, GetCenteredPosition(_message),Color.White);
+
                 break;
         }
+
         #endregion
 
         _spriteBatch.End();
@@ -192,6 +322,57 @@ public class MosquitoAttackGame : Game
     private bool Pressed(Keys key)
     {
         return _kbCurrentState.IsKeyDown(key) && _kbPreviousState.IsKeyUp(key);
-                
+    }
+
+    private void ResetGame()
+    {
+        _cannon = new Cannon();
+        _cannon.Initialize(new Vector2(50, 325), 235, BoundingBox);
+        _cannon.LoadContent(Content);
+
+        #region randomize m generation
+
+        _mosquitoes = new Mosquito[_NumMosquitos];
+
+        for(int c = 0; c < _NumMosquitos; c++)
+        {
+            _mosquitoes[c] = new Mosquito();
+        }
+
+        
+        foreach(Mosquito m in _mosquitoes)
+        {
+            int direction = _random.Next(1, 3) == 2 ? -1 : 1;
+
+            int xPosition = _random.Next(1, _WindowWidth - 50);
+            int yPosition = _random.Next(1, 151);
+            int speed = _random.Next(150, 251);
+
+            m.Initialize(new Vector2(xPosition, yPosition), speed, new Vector2(direction, 0), BoundingBox);
+
+            m.LoadContent(Content);
+        }
+
+        _winner = "";
+        _message = "";
+
+        #endregion
+    }
+
+    private string GetMenuMessage()
+    {
+        return "Main Menu\nPress [p] to play\nControl the Cannon with [a] and [d]\nHit all the mosquitoes to win!";
+    }
+
+    private Vector2 GetCenteredPosition(string text)
+    {
+        
+        // Centers the text in the middle of the screen
+        
+        Vector2 size = _font.MeasureString(text);
+        return new Vector2(
+            (_WindowWidth - size.X) / 2,
+            (_WindowHeight - size.Y) / 2
+        );
     }
 }

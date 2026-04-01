@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace Lesson08;
+namespace Lesson08_1;
 
 internal class SimpleAnimation
 {
@@ -117,6 +117,21 @@ internal class SimpleAnimation
     }
 
     internal void Draw(SpriteBatch spriteBatch, Vector2 position, SpriteEffects effects)
+    {
+        spriteBatch.Draw(
+            _texture,
+            position,
+            _frames[_frameIndex],
+            Color.White,
+            0f,
+            Vector2.Zero,
+            1f,
+            effects,
+            0f
+        );
+    }
+
+    internal void Draw(SpriteBatch spriteBatch, Vector2 position, SpriteEffects effects, Color color)
     {
         spriteBatch.Draw(
             _texture,
