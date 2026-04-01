@@ -18,9 +18,6 @@ public class CannonBall{
     private const float _TrailSpawnInterval = 0.1f;
     private const int _MaxTrailPositions = 8;
 
-    private enum State { Flying, NotFlying }
-    private State _state = State.NotFlying;
-
     internal Rectangle BoundingBox
     {
         get => new Rectangle((int)_position.X, (int)_position.Y, _texture.Width, _texture.Height);
@@ -28,7 +25,7 @@ public class CannonBall{
 
     internal bool Launchable { get => _state == State.NotFlying; }
 
-    internal void Initialize(float speed, Rectangle gameBoundingBox)
+    internal override void Initialize(float speed, Rectangle gameBoundingBox)
     {
         _position = Vector2.Zero;
         _direction = Vector2.Zero;
