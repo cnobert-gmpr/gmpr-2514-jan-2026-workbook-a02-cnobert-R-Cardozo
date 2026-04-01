@@ -27,10 +27,8 @@ public class CannonBall{
 
     internal override void Initialize(float speed, Rectangle gameBoundingBox)
     {
-        _position = Vector2.Zero;
-        _direction = Vector2.Zero;
-        _speed = speed;
-        _gameBoundingBox = gameBoundingBox;
+        // base refers to the parent method :)
+        base.Initialize(speed, gameBoundingBox);
 
         _trailPositions = new List<Vector2>();
         _trailTimer = 0;

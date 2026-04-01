@@ -15,7 +15,8 @@ public class Projectile
 
     internal bool Launchable { get => _state == State.NotFlying; }
 
-    internal void Initialize(float speed, Rectangle gameBoundingBox)
+    // virtual -> the children of this method MAY override the method, but they don't have to
+    internal virtual void Initialize(float speed, Rectangle gameBoundingBox)
     {
         _position = Vector2.Zero;
         _direction = Vector2.Zero;
