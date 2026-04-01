@@ -89,7 +89,7 @@ public class Mosquito
 
                 _animationAlive.Update(gameTime);
 
-                if(_rng.Next(1, UpperRandomFiringRange))
+                if(_rng.Next(1, UpperRandomFiringRange) == 1)
                 {
                     Shoot();
                 }
