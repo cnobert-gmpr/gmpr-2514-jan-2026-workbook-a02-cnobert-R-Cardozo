@@ -46,7 +46,7 @@ public class Mosquito
         _state = State.Alive;
 
         _fireBalls = new Fireball[NumFireBalls];
-        for(int c = 0; char < NumFireBalls; c++){
+        for(int c = 0; c < NumFireBalls; c++){
             _fireBalls[c] = new FireBall();
             _fireBalls[c].Initialize(50, _gameBoundingBox);
         }
