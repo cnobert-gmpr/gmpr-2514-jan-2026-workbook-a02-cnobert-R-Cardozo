@@ -1,3 +1,4 @@
+using System;
 using System.IO.Pipes;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -12,6 +13,7 @@ namespace Lesson08;
 
 public class Mosquito
 {
+    private const int NumFireBalls = 10, UpperRandomFiringRange = 160;
     private SimpleAnimation _animationAlive, _animationPoofing;
     private Vector2 _position, _direction;
     private float _speed;
@@ -21,6 +23,7 @@ public class Mosquito
     private State _state;
 
     private FireBall[] _fireBalls;
+    private Random  _rng;
 
     internal Rectangle BoundingBox
     {
@@ -45,11 +48,13 @@ public class Mosquito
         _gameBoundingBox = gameBoundingBox;
         _state = State.Alive;
 
-        _fireBalls = new Fireball[NumFireBalls];
+        _fireBalls = new FireBall[NumFireBalls];
         for(int c = 0; c < NumFireBalls; c++){
             _fireBalls[c] = new FireBall();
             _fireBalls[c].Initialize(50, _gameBoundingBox);
         }
+
+        _rng = new Random();
     }
 
     internal void LoadContent(ContentManager content)
@@ -61,6 +66,11 @@ public class Mosquito
 
         texture = content.Load<Texture2D>("Poof");
         _animationPoofing = new SimpleAnimation(texture, texture.Width / 8, texture.Height, 8, 4);
+
+        foreach(FireBall fb in _fireBalls)
+        {
+            fb.LoadContent(content);
+        }
     }
 
     internal void Update(GameTime gameTime)
@@ -78,6 +88,12 @@ public class Mosquito
                 }
 
                 _animationAlive.Update(gameTime);
+
+                if(_rng.Next(1, UpperRandomFiringRange))
+                {
+                    Shoot();
+                }
+
                 break;
 
             case State.Poofing:
@@ -91,6 +107,11 @@ public class Mosquito
 
             case State.Dead:
                 break;
+        }
+
+        foreach(FireBall fb in _fireBalls)
+        {
+            fb.Update(gameTime);
         }
     }
 
@@ -109,6 +130,11 @@ public class Mosquito
             case State.Dead:
                 break;
         }
+
+        foreach(FireBall fb in _fireBalls)
+        {
+            fb.Draw(spriteBatch);
+        }
     }
 
     internal void Die()
@@ -117,6 +143,21 @@ public class Mosquito
         {
             _state = State.Poofing;
             _animationPoofing.Looping = false;
+        }
+    }
+
+    internal void Shoot()
+    {
+        foreach(FireBall fb in _fireBalls)
+        {
+            if (fb.Launchable)
+            {
+                float fireBallPositionY = BoundingBox.Center.X - fb.BoundingBox.Width / 2;
+                float fireBallPositionX = BoundingBox.Top - fb.BoundingBox.Height;
+                Vector2 fireBallPosition = new Vector2(fireBallPositionX, fireBallPositionY);
+                fb.Launch(fireBallPosition, new Vector2(0, 1));
+                return;
+            }
         }
     }
 }
