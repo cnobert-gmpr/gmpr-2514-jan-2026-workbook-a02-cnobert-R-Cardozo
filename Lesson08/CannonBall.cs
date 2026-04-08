@@ -111,16 +111,6 @@ public class CannonBall{
         }
     }
 
-    internal void Launch(Vector2 position, Vector2 direction)
-    {
-        if(_state == State.NotFlying)
-        {
-            _position = position;
-            _direction = direction;
-            _state = State.Flying;
-        }
-    }
-
     internal bool ProcessCollision(Rectangle otherBoundingBox)
     {
         if(_state == State.Flying && BoundingBox.Intersects(otherBoundingBox))
