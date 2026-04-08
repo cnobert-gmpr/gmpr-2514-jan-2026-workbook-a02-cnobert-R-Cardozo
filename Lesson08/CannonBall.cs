@@ -41,7 +41,7 @@ public class CannonBall : Projectile {
             case State.Flying:
                 _position += _direction * _speed * dt;
                 _trailTimer += dt;
-                
+
                 if(_trailTimer >= _TrailSpawnInterval)
                 {
                     _trailTimer = 0;
@@ -103,11 +103,10 @@ public class CannonBall : Projectile {
         }
     }
 
-    internal bool ProcessCollision(Rectangle otherBoundingBox)
+    internal override bool ProcessCollision(Rectangle otherBoundingBox)
     {
-        if(_state == State.Flying && BoundingBox.Intersects(otherBoundingBox))
+        if (base.ProcessCollision(otherBoundingBox))
         {
-            _state = State.NotFlying;
             _trailPositions.Clear();
             return true;
         }
