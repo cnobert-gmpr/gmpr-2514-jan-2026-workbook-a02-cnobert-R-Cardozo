@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Security.Cryptography;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
@@ -57,8 +58,8 @@ public class Cannon : Actor
     internal void LoadContent(ContentManager content)
     {
         Texture2D texture = content.Load<Texture2D>("Cannon");
-        _dimensions = new Point(texture.Width / 4, texture.Height);
-        _animationAlive = new SimpleAnimation(texture, _dimensions.X, _dimensions.Y, 4, 2);
+        Point dimensions = new Point(texture.Width / 4, texture.Height);
+        _animationAlive = new SimpleAnimation(texture, dimensions.X, dimensions.Y, 4, 2);
 
         foreach(Projectile p in _projectiles)
         {
