@@ -24,19 +24,6 @@ public class Mosquito : Actor
     private FireBall[] _fireBalls;
     private Random  _rng;
 
-    internal Rectangle BoundingBox
-    {
-        get
-        {
-            return new Rectangle(
-                (int)_position.X,
-                (int)_position.Y,
-                (int)_animationAlive.FrameDimensions.X,
-                (int)_animationAlive.FrameDimensions.Y
-            );
-        }
-    }
-
     internal bool Alive { get => _state == State.Alive; }
 
     internal void Initialize(Vector2 position, float speed, Vector2 direction, Rectangle gameBoundingBox)
