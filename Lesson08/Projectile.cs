@@ -1,4 +1,7 @@
 using System.Runtime;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Lesson08;
 
