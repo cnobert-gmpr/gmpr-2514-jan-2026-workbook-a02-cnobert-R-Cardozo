@@ -6,7 +6,7 @@ namespace Lesson08;
 
 public class Actor
 {
-    protected SimpleAnimation _animationAlive, _animationDying;
+    protected SimpleAnimation _animationAlive, _animationPoofing;
     protected Vector2 _position, _direction;
     protected Point _dimensions;
     protected float _speed;
