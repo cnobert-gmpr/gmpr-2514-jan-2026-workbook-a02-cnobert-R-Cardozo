@@ -7,13 +7,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Lesson08;
 
-public class Cannon
+public class Cannon : Actor
 {
     private const int _NumProjectiles = 5;
-    private SimpleAnimation _animationAlive, _animationDying;
-    private Vector2 _position, _direction;
-    private Point _dimensions;
-    private float _speed;
+    
     private Rectangle _gameBoundingBox;
 
     private Projectile[] _projectiles;
