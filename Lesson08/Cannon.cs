@@ -10,7 +10,7 @@ namespace Lesson08;
 public class Cannon : Actor
 {
     private const int _NumProjectiles = 5;
-    
+
     private Rectangle _gameBoundingBox;
 
     private Projectile[] _projectiles;
@@ -32,19 +32,6 @@ public class Cannon : Actor
             {
                 _animationAlive.Reverse = false;
             }
-        }
-    }
-
-    internal Rectangle BoundingBox
-    {
-        get
-        {
-            return new Rectangle(
-                (int)_position.X,
-                (int)_position.Y,
-                (int)_animationAlive.FrameDimensions.X,
-                (int)_animationAlive.FrameDimensions.Y
-            );
         }
     }
 

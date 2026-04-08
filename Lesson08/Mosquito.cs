@@ -14,8 +14,7 @@ namespace Lesson08;
 public class Mosquito : Actor
 {
     private const int NumFireBalls = 10, UpperRandomFiringRange = 160;
-    private Vector2 _position, _direction;
-    private float _speed;
+    
     private Rectangle _gameBoundingBox;
 
     private enum State { Alive, Poofing, Dead };
