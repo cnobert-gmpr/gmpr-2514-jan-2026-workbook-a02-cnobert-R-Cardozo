@@ -41,7 +41,7 @@ public abstract class Projectile
         {
             _position = position;
             _direction = direction;
-            _state = State.NotFlying;
+            _state = State.Flying;
         }
     }
 
