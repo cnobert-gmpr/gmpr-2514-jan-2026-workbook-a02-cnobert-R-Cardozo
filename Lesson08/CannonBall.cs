@@ -4,32 +4,24 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Drawing;
 
 namespace Lesson08;
 
-public class CannonBall{
+public class CannonBall : Projectile {
     private Texture2D _texture;
-    private Vector2 _position, _direction;
-    private float _speed;
-    private Rectangle _gameBoundingBox;
 
     private List<Vector2> _trailPositions;
     private float _trailTimer;
     private const float _TrailSpawnInterval = 0.1f;
     private const int _MaxTrailPositions = 8;
 
-    internal Rectangle BoundingBox
-    {
-        get => new Rectangle((int)_position.X, (int)_position.Y, _texture.Width, _texture.Height);
-    }
-
-    internal bool Launchable { get => _state == State.NotFlying; }
-
     internal override void Initialize(float speed, Rectangle gameBoundingBox)
     {
         // base refers to the parent method :)
         base.Initialize(speed, gameBoundingBox);
 
+        _dimensions = new Point(4, 4);
         _trailPositions = new List<Vector2>();
         _trailTimer = 0;
     }
@@ -48,8 +40,8 @@ public class CannonBall{
         {
             case State.Flying:
                 _position += _direction * _speed * dt;
-
                 _trailTimer += dt;
+                
                 if(_trailTimer >= _TrailSpawnInterval)
                 {
                     _trailTimer = 0;
