@@ -45,5 +45,14 @@ public abstract class Projectile
         }
     }
 
-    internal abstract bool ProcessCollision(Rectangle otherBoundingBox);
+    internal virtual bool ProcessCollision(Rectangle boundingBox)
+    {
+        bool returnValue = false;
+        if(_state == State.Flying && BoundingBox.Intersects(boundingBox))
+        {
+            returnValue = true;
+            _state = State.NotFlying;
+        }
+        return returnValue;
+    }
 }

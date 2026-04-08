@@ -25,12 +25,12 @@ public class CannonBall : Projectile {
         _trailTimer = 0;
     }
 
-    internal void LoadContent(ContentManager content)
+    internal override void LoadContent(ContentManager content)
     {
         _texture = content.Load<Texture2D>("CannonBall");
     }
 
-    internal void Update(GameTime gameTime)
+    internal override void Update(GameTime gameTime)
     {
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -64,7 +64,7 @@ public class CannonBall : Projectile {
 
     }
 
-    internal void Draw(SpriteBatch spriteBatch)
+    internal override void Draw(SpriteBatch spriteBatch)
     {
         #region Change state
         switch (_state)
