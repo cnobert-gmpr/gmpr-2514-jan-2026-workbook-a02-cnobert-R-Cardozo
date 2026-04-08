@@ -6,5 +6,5 @@ namespace Lesson08;
 
 public class Actor
 {
-    
+    protected SimpleAnimation _animationAlive, _animationDying;
 }

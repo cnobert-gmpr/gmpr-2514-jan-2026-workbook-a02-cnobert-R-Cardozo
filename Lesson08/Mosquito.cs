@@ -11,10 +11,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Lesson08;
 
-public class Mosquito
+public class Mosquito : Actor
 {
     private const int NumFireBalls = 10, UpperRandomFiringRange = 160;
-    private SimpleAnimation _animationAlive, _animationPoofing;
     private Vector2 _position, _direction;
     private float _speed;
     private Rectangle _gameBoundingBox;

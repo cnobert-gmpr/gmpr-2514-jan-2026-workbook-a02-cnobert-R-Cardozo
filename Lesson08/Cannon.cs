@@ -10,7 +10,7 @@ namespace Lesson08;
 public class Cannon
 {
     private const int _NumProjectiles = 5;
-    private SimpleAnimation _animation;
+    private SimpleAnimation _animationAlive, _animationDying;
     private Vector2 _position, _direction;
     private Point _dimensions;
     private float _speed;
@@ -29,11 +29,11 @@ public class Cannon
             // Reverses animation of cannon based on direction it's moving
             if(_direction.X < 0)
             {
-                _animation.Reverse = true;
+                _animationAlive.Reverse = true;
             }
             else
             {
-                _animation.Reverse = false;
+                _animationAlive.Reverse = false;
             }
         }
     }
@@ -45,8 +45,8 @@ public class Cannon
             return new Rectangle(
                 (int)_position.X,
                 (int)_position.Y,
-                (int)_animation.FrameDimensions.X,
-                (int)_animation.FrameDimensions.Y
+                (int)_animationAlive.FrameDimensions.X,
+                (int)_animationAlive.FrameDimensions.Y
             );
         }
     }
@@ -74,7 +74,7 @@ public class Cannon
     {
         Texture2D texture = content.Load<Texture2D>("Cannon");
         _dimensions = new Point(texture.Width / 4, texture.Height);
-        _animation = new SimpleAnimation(texture, _dimensions.X, _dimensions.Y, 4, 2);
+        _animationAlive = new SimpleAnimation(texture, _dimensions.X, _dimensions.Y, 4, 2);
 
         foreach(Projectile p in _projectiles)
         {
@@ -89,7 +89,7 @@ public class Cannon
 
         if(_direction != Vector2.Zero)
         {
-            _animation.Update(gameTime);
+            _animationAlive.Update(gameTime);
         }
 
         foreach(Projectile p in _projectiles)
@@ -101,9 +101,9 @@ public class Cannon
 
     internal void Draw(SpriteBatch spriteBatch)
     {
-        if(_animation != null)
+        if(_animationAlive != null)
         {
-            _animation.Draw(spriteBatch, _position, SpriteEffects.None);
+            _animationAlive.Draw(spriteBatch, _position, SpriteEffects.None);
         }
 
         foreach(Projectile p in _projectiles)
