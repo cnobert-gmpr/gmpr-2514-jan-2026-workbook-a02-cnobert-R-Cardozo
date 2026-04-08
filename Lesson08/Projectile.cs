@@ -1,5 +1,4 @@
-using System.Drawing;
-using System.Numerics;
+using System.Runtime;
 
 namespace Lesson08;
 
@@ -23,4 +22,20 @@ public class Projectile
         _speed = speed;
         _gameBoundingBox = gameBoundingBox;
     }
+
+    internal abstract void LoadContent(ContentManager content);
+    internal abstract void Update(GameTime gameTime);
+    internal abstract void Draw(SpriteBatch spriteBatch);
+
+    internal void Launch(Vector2 position, Vector2 direction)
+    {
+        if(_state == State.NotFlying)
+        {
+            _position = position;
+            _direction = direction;
+            _state = State.NotFlying;
+        }
+    }
+
+    internal abstract bool ProcessCollision(Rectangle otherBoundingBox);
 }
