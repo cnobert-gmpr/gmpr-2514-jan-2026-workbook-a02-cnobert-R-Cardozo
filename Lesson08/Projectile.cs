@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Lesson08;
 
-public class Projectile
+public abstract class Projectile
 {
     protected Vector2 _position, _direction;
     protected Point _dimensions;
