@@ -8,6 +8,11 @@ public class Platformer : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    private const int WindowWidth = 550;
+    private const int WindowHeight = 400;
+    private Rectangle _gameBoundingBox = new Rectangle(0, 0, WindowWidth, WindowHeight);
+
+    private Player _player;
 
     public Platformer()
     {
