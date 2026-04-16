@@ -100,10 +100,22 @@ public class Player
     internal void MoveHorizontally(float direction)
     {
         _velocity.x = direction * _Speed;
+
+        if(_state != State.Jumping)
+        {
+            _animationCurrent = _animationWalk;
+            _state = State.Walking;
+        }
     }
 
     internal void Stop()
     {
         _velocity.x = 0;
+
+        if(_state == State.Walking)
+        {
+            _state = State.Idle;
+            _animationCurrent = _animationIdle;
+        }
     }
 }
