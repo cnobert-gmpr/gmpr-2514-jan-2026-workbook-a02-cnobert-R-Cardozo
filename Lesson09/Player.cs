@@ -75,15 +75,34 @@ public class Player
             case State.Jumping:
 
                 break;
-                
+
             case State.Idle:
 
                 break;
-                
+
             case State.Walking:
 
                 break;
-                
+
+        }
+    }
+
+    internal void Draw(SpriteBatch spriteBatch)
+    {
+        switch(_state)
+        {
+            case State.Jumping:
+
+                break;
+
+            case State.Idle:
+
+                break;
+
+            case State.Walking:
+
+                break;
+
         }
     }
 }
