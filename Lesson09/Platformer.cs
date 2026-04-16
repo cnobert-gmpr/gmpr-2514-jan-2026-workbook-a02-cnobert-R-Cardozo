@@ -30,6 +30,7 @@ public class Platformer : Game
  
         _player = new Player(new Vector2(50, 50), _gameBoundingBox);
         base.Initialize();
+        _player.Initialize();
     }
 
     protected override void LoadContent()
