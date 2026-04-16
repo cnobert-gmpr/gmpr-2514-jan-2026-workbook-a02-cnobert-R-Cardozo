@@ -102,6 +102,7 @@ public class Player
 
     internal void MoveHorizontally(float direction)
     {
+        bool originalDirection = _facingRight;
         _velocity.X = direction * _Speed;
 
         _facingRight = _velocity.X > 0;
@@ -111,6 +112,11 @@ public class Player
             _animationCurrent = _animationWalk;
             _animationCurrent.Reset();
             _state = State.Walking;
+        }
+
+        if(originalDirection != _facingRight)
+        {
+            _animationCurrent.Reset();
         }
     }
 
