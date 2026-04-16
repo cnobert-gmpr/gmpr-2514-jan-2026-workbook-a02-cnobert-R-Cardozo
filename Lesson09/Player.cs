@@ -6,5 +6,9 @@ namespace Lesson09;
 
 public class Player
 {
+    private const int _Speed = 150;
+    private enum State { Idle, Walking, Jumping }
+    private State _state;
+
     
 }
