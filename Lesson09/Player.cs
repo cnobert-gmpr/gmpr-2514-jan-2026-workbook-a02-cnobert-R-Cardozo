@@ -10,5 +10,7 @@ public class Player
     private enum State { Idle, Walking, Jumping }
     private State _state;
 
+    private SimpleAnimation _animationIdle, _animationJump, _animationWalk, _animationCurrent;
+
     
 }
