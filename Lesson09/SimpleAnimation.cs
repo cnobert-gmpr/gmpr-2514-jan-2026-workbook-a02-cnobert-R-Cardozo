@@ -145,4 +145,10 @@ internal class SimpleAnimation
             0f
         );
     }
+
+    internal void Reset()
+    {
+        _frameIndex = 0;
+        _timer = 0;
+    }
 }
