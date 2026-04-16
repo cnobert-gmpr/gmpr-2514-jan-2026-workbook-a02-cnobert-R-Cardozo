@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Numerics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -23,7 +24,11 @@ public class Platformer : Game
 
     protected override void Initialize()
     {
-
+        _graphics.PreferredBackBufferWidth = WindowWidth;
+        _graphics.PreferredBackBufferHeight = WindowHeight;
+        _graphics.ApplyChanges();
+ 
+        _player = new Player(new Vector2(50, 50), _gameBoundingBox);
         base.Initialize();
     }
 
