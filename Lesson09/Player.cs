@@ -109,6 +109,7 @@ public class Player
         if(_state != State.Jumping)
         {
             _animationCurrent = _animationWalk;
+            _animationCurrent.Reset();
             _state = State.Walking;
         }
     }
@@ -121,6 +122,7 @@ public class Player
         {
             _state = State.Idle;
             _animationCurrent = _animationIdle;
+            _animationCurrent.Reset();
         }
     }
 }
