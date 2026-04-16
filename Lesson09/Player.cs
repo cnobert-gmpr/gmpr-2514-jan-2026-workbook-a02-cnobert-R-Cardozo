@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using System.Collections;
 using System.IO.Pipes;
+using System;
 
 namespace Lesson09;
 
