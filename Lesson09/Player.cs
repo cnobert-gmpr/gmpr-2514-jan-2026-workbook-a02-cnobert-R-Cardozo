@@ -12,5 +12,19 @@ public class Player
 
     private SimpleAnimation _animationIdle, _animationJump, _animationWalk, _animationCurrent;
 
+    private Vector2 _position, _velocity, _dimensions;
     
+    private Rectangle _gameBoundingBox;
+
+    internal Rectangle BoundingBox
+    {
+        get {return new Rectangle((int)_position.X, (int)_position.Y, (int)_dimensions.X, (int)_dimensions.Y);}
+    }
+
+    public Player(Vector2 position, Rectangle gameBoundingBox)
+    {
+        _position = position;
+        _gameBoundingBox = gameBoundingBox;
+        _dimensions = new Vector2(46, 40);
+    }
 }
