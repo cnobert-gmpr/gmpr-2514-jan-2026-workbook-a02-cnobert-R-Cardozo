@@ -29,28 +29,29 @@ public class Platformer : Game
         _graphics.ApplyChanges();
  
         _player = new Player(new Vector2(50, 50), _gameBoundingBox);
-        base.Initialize();
         _player.Initialize();
+
+        base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+        _player.LoadContent(Content);
     }
 
     protected override void Update(GameTime gameTime)
     {
-        
-
+        _player.Update(gameTime);
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
-
-        
+        _spriteBatch.Begin();
+        _player.Draw();
+        _spriteBatch.End();
 
         base.Draw(gameTime);
     }
