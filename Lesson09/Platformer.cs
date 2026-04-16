@@ -44,10 +44,10 @@ public class Platformer : Game
     {
         KeyboardState kbState = Keyboard.GetState();
 
-        if(kbState.IsKeyDown(Keys.Left))
+        if(kbState.IsKeyDown(Keys.Left) || kbState.IsKeyDown(Keys.A))
             _player.MoveHorizontally(-1);
 
-        else if(kbState.IsKeyDown(Keys.Right))
+        else if(kbState.IsKeyDown(Keys.Right) || kbState.IsKeyDown(Keys.D))
             _player.MoveHorizontally(1);
 
         else
