@@ -89,12 +89,9 @@ public class Player
         switch(_state)
         {
             case State.Jumping:
-                break;
-
             case State.Idle:
-                break;
-
             case State.Walking:
+                _animationCurrent?.Draw(spriteBatch, _position, SpriteEffects.None);
                 break;
 
         }
