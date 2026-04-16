@@ -50,7 +50,7 @@ public class Platformer : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin();
-        _player.Draw();
+        _player.Draw(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);
