@@ -27,4 +27,9 @@ public class Player
         _gameBoundingBox = gameBoundingBox;
         _dimensions = new Vector2(46, 40);
     }
+
+    internal void Initialize()
+    {
+        _state = State.Idle;
+    }
 }
