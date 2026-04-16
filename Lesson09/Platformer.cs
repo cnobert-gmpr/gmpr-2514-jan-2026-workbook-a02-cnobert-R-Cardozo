@@ -8,12 +8,11 @@ namespace Lesson09;
 public class Platformer : Game
 {
     internal const float _Gravity = 60;
-    
+    private const int _WindowWidth = 550, _WindowHeight = 400;
+
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private const int WindowWidth = 550;
-    private const int WindowHeight = 400;
-    private Rectangle _gameBoundingBox = new Rectangle(0, 0, WindowWidth, WindowHeight);
+    private Rectangle _gameBoundingBox = new Rectangle(0, 0, _WindowWidth, _WindowHeight);
 
     private Player _player;
 
@@ -26,8 +25,8 @@ public class Platformer : Game
 
     protected override void Initialize()
     {
-        _graphics.PreferredBackBufferWidth = WindowWidth;
-        _graphics.PreferredBackBufferHeight = WindowHeight;
+        _graphics.PreferredBackBufferWidth = _WindowWidth;
+        _graphics.PreferredBackBufferHeight = _WindowHeight;
         _graphics.ApplyChanges();
  
         _player = new Player(new Vector2(50, 50), _gameBoundingBox);
