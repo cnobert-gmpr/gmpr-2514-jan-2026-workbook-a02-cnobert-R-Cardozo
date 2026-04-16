@@ -43,11 +43,13 @@ public class Platformer : Game
     protected override void Update(GameTime gameTime)
     {
         KeyboardState kbState = Keyboard.GetState();
+        bool left = kbState.IsKeyDown(Keys.Left) || kbState.IsKeyDown(Keys.A);
+        bool right = kbState.IsKeyDown(Keys.Right) || kbState.IsKeyDown(Keys.D);
 
-        if(kbState.IsKeyDown(Keys.Left) || kbState.IsKeyDown(Keys.A))
+        if(left)
             _player.MoveHorizontally(-1);
 
-        else if(kbState.IsKeyDown(Keys.Right) || kbState.IsKeyDown(Keys.D))
+        else if(right)
             _player.MoveHorizontally(1);
 
         else
