@@ -104,6 +104,8 @@ public class Player
     {
         _velocity.X = direction * _Speed;
 
+        _facingRight = _velocity.X > 0;
+
         if(_state != State.Jumping)
         {
             _animationCurrent = _animationWalk;
