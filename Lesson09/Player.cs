@@ -92,7 +92,7 @@ public class Player
             case State.Jumping:
             case State.Idle:
             case State.Walking:
-                SpriteEffects effect = _facingRight?.SpriteEffects.None : SpriteEffects.FlipHorizontally;
+                SpriteEffects effect = _facingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
                 _animationCurrent?.Draw(spriteBatch, _position, SpriteEffects.None);
                 break;
