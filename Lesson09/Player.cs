@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using System.Collections;
+using System.IO.Pipes;
 
 namespace Lesson09;
 
@@ -73,6 +74,13 @@ public class Player
         _velocity.Y += Platformer._Gravity * dt;
 
         _position += _velocity * dt;
+
+        if(Math.Abs(_velocity.Y) > Platformer._Gravity * dt)
+        {
+            _state = State.Jumping;
+            _animationCurrent = _animationJump;
+            _animationCurrent.Reset();
+        }
 
         switch(_state)
         {
