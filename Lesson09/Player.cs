@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework;
+using Microsoft.Xna.;
 using System.Collections;
 
 namespace Lesson09;
@@ -95,5 +95,15 @@ public class Player
                 break;
 
         }
+    }
+
+    internal void MoveHorizontally(float direction)
+    {
+        _velocity.x = direction * _Speed;
+    }
+
+    internal void Stop()
+    {
+        _velocity.x = 0;
     }
 }
