@@ -102,7 +102,7 @@ public class Player
 
     internal void MoveHorizontally(float direction)
     {
-        _velocity.x = direction * _Speed;
+        _velocity.X = direction * _Speed;
 
         if(_state != State.Jumping)
         {
@@ -113,7 +113,7 @@ public class Player
 
     internal void Stop()
     {
-        _velocity.x = 0;
+        _velocity.X = 0;
 
         if(_state == State.Walking)
         {
