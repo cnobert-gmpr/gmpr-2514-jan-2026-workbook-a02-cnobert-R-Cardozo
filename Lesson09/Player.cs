@@ -66,5 +66,7 @@ public class Player
         float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
 
         _animationCurrent?.Update(gameTime); // Essentially checks if -> _animationCurrent != null
+
+        _position += _velocity * dt;
     }
 }
