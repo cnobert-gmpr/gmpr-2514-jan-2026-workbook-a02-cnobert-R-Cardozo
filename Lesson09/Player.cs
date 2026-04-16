@@ -60,4 +60,11 @@ public class Player
         // After loading, make sure Initialize will have something to use
         _animationCurrent = _animationIdle;
     }
+
+    internal void Update(GameTime gameTime)
+    {
+        float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
+
+        _animationCurrent?.Update(gameTime); // Essentially checks if -> _animationCurrent != null
+    }
 }
