@@ -17,13 +17,10 @@ public class Mosquito : Actor
     
     private Rectangle _gameBoundingBox;
 
-    private enum State { Alive, Poofing, Dead };
-    private State _state;
-
-    private FireBall[] _fireBalls;
     private Random  _rng;
 
-    internal bool Alive { get => _state == State.Alive; }
+    private FireBall[] _fireBalls;
+
 
     internal void Initialize(Vector2 position, float speed, Vector2 direction, Rectangle gameBoundingBox)
     {

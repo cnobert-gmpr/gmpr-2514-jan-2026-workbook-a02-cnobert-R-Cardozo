@@ -11,6 +11,13 @@ public class Actor
     protected Vector2 _position, _direction;
     protected float _speed;
 
+    protected Rectangle _gameBoundingBox;
+
+    protected enum State { Alive, Poofing, Dead };
+    protected State _state;
+
+    internal bool Alive { get => _state == State.Alive; }
+
     internal Rectangle BoundingBox
     {
         get
