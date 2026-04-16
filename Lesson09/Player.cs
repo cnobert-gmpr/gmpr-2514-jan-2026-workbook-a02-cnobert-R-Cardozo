@@ -70,6 +70,8 @@ public class Player
         // Checks whether _animationCurrent != null
         _animationCurrent?.Update(gameTime);
 
+        _velocity.Y += Platformer._Gravity * dt;
+
         _position += _velocity * dt;
 
         switch(_state)
