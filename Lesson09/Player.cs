@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.ContentManager;
+using System.Collections;
 
 namespace Lesson09;
 
@@ -68,5 +69,21 @@ public class Player
         _animationCurrent?.Update(gameTime); // Essentially checks if -> _animationCurrent != null
 
         _position += _velocity * dt;
+
+        switch(_state)
+        {
+            case State.Jumping:
+
+                break;
+                
+            case State.Idle:
+
+                break;
+                
+            case State.Walking:
+
+                break;
+                
+        }
     }
 }
