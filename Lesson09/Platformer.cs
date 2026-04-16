@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -42,6 +42,17 @@ public class Platformer : Game
 
     protected override void Update(GameTime gameTime)
     {
+        KeyboardState kbState = Keyboard.GetState();
+
+        if(kbState.IsKeyDown(Keys.Left))
+            _player.MoveHorizontally(-1);
+
+        else if(kbState.IsKeyDown(Keys.Right))
+            _player.MoveHorizontally(1);
+
+        else
+            _player.Stop();
+
         _player.Update(gameTime);
         base.Update(gameTime);
     }
