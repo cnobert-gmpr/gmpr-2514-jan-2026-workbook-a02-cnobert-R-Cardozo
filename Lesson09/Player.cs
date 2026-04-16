@@ -73,15 +73,12 @@ public class Player
         switch(_state)
         {
             case State.Jumping:
-
                 break;
 
             case State.Idle:
-
                 break;
 
             case State.Walking:
-
                 break;
 
         }
@@ -92,15 +89,12 @@ public class Player
         switch(_state)
         {
             case State.Jumping:
-
                 break;
 
             case State.Idle:
-
                 break;
 
             case State.Walking:
-
                 break;
 
         }
