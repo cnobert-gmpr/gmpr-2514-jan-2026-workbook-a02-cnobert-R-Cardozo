@@ -64,6 +64,7 @@ public class Platformer : Game
         KeyboardState kbState = Keyboard.GetState();
         bool left = kbState.IsKeyDown(Keys.Left) || kbState.IsKeyDown(Keys.A);
         bool right = kbState.IsKeyDown(Keys.Right) || kbState.IsKeyDown(Keys.D);
+        bool jump = kbState.IsKeyDown(Keys.Up) || kbState.IsKeyDown(Keys.W) || kbState.IsKeyDown(Keys.Space);
 
         if(left)
             _player.MoveHorizontally(-1);
@@ -74,7 +75,7 @@ public class Platformer : Game
         else
             _player.Stop();
         
-        if(kbState.IsKeyDown(Keys.Space))
+        if(jump)
             _player.Jump();
         
         #endregion
