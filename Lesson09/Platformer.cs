@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -44,6 +43,7 @@ public class Platformer : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _player.LoadContent(Content);
+        _ground.LoadContent(GraphicsDevice);
     }
 
     protected override void Update(GameTime gameTime)
@@ -70,6 +70,7 @@ public class Platformer : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin();
         _player.Draw(_spriteBatch);
+        _ground.Draw(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);
