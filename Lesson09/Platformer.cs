@@ -8,7 +8,7 @@ namespace Lesson09;
 
 public class Platformer : Game
 {
-    internal const float _Gravity = 60;
+    internal const float _Gravity = 100;
     private const int _WindowWidth = 550, _WindowHeight = 400;
 
     private GraphicsDeviceManager _graphics;

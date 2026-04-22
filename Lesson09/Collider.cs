@@ -2,7 +2,7 @@ using System.Security;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Lesson09Platformer;
+namespace Lesson09;
 public enum ColliderType { Top, Right, Bottom, Left }
 
 public class Collider
