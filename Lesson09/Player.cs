@@ -118,7 +118,8 @@ public class Player
         bool originalDirection = _facingRight;
         _velocity.X = direction * _Speed;
 
-        _facingRight = _velocity.X > 0;
+        if(_velocity.X != 0)
+            _facingRight = _velocity.X > 0;
 
         if(_state != State.Jumping)
         {
