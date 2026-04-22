@@ -5,5 +5,8 @@ namespace Lesson09Platformer;
 
 public class Collider
 {
+    public enum ColliderType { Top, Right, Bottom, Left }
+    private ColliderType _type;
+
     
 }
