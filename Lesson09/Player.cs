@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections;
 using System.IO.Pipes;
 using System;
+using System.Drawing;
 
 namespace Lesson09;
 
@@ -142,5 +143,20 @@ public class Player
             _animationCurrent = _animationIdle;
             _animationCurrent.Reset();
         }
+    }
+
+    internal void Land(Rectangle whatILandedOn)
+    {
+        if(_state == State.Jumping)
+        {
+            _position.Y = whatILandedOn.Top - _dimensions.Y + 1;
+            _velocity.Y = 0;
+            _state = State.Walking;
+        }
+    }
+
+    internal void StandOn(Rectangle whatIAmStandingOn, float dt)
+    {
+        _velocity.Y -= Platformer._Gravity * dt;
     }
 }

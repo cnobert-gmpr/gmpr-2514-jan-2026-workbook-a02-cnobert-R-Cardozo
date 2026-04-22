@@ -83,7 +83,7 @@ public class Collider
                     break;
 
                 case ColliderType.Bottom:
-                    
+
 
                     break;
 

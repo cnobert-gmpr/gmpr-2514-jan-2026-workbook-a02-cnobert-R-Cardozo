@@ -60,6 +60,8 @@ public class Platformer : Game
 
         else
             _player.Stop();
+        
+        _ground.ProcessCollision(_player, gameTime);
 
         _player.Update(gameTime);
         base.Update(gameTime);
