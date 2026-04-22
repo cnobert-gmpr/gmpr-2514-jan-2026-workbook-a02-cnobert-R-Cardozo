@@ -27,7 +27,7 @@ public class Collider
         _type = colliderType;
     }
 
-    internal void LoadContent(GraphicsDevice graphissDevice)
+    internal void LoadContent(GraphicsDevice graphicsDevice)
     {
         Color myColour = Color.White;
         switch(_type)
@@ -55,7 +55,7 @@ public class Collider
 
     internal void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_pixel, BoundingBox, Color.white);
+        spriteBatch.Draw(_pixel, BoundingBox, Color.White);
     }
 
     internal void ProcessCollision(Player player, GameTime gameTime)
