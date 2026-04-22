@@ -1,3 +1,4 @@
+using System.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -44,11 +45,16 @@ public class Collider
                 myColour = Color.Purple;
                 break;
         }
-        
+
         if(_pixel == null)
         {
             _pixel = new Texture2D(graphicsDevice, 1, 1);
             _pixel.SetData(new[] { myColour });
         }
+    }
+
+    internal void Draw(SpriteBatch spriteBatch)
+    {
+        spriteBatch.Draw(_pixel, BoundingBox, Color.white);
     }
 }
