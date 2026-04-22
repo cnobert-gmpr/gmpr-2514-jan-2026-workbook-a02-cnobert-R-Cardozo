@@ -18,6 +18,8 @@ public class Platformer : Game
     private Player _player;
     private Collider _ground;
 
+    private Collider[] _platform01;
+
     public Platformer()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -36,6 +38,13 @@ public class Platformer : Game
 
         _ground = new Collider(new Vector2(0, 300), new Vector2(_WindowWidth, 1), ColliderType.Top);
 
+        _platform01 = new Collider[4];
+
+        _platform01[0] = new Collider(new Vector2(160, 230), new Vector2(80, 1), ColliderType.Top);
+        _platform01[1] = new Collider(new Vector2(250, 230), new Vector2(1, 20), ColliderType.Right);
+        _platform01[2] = new Collider(new Vector2(160, 250), new Vector2(80, 1), ColliderType.Bottom);
+        _platform01[3] = new Collider(new Vector2(150, 230), new Vector2(1, 20), ColliderType.Left);
+
         base.Initialize();
     }
 
@@ -44,6 +53,9 @@ public class Platformer : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _player.LoadContent(Content);
         _ground.LoadContent(GraphicsDevice);
+
+        foreach(Collider c in _platform01)
+            c.LoadContent(GraphicsDevice);
     }
 
     protected override void Update(GameTime gameTime)
@@ -69,6 +81,9 @@ public class Platformer : Game
         
         _ground.ProcessCollision(_player, gameTime);
 
+        foreach(Collider c in _platform01)
+            c.ProcessCollision(_player, gameTime);
+
         _player.Update(gameTime);
         base.Update(gameTime);
     }
@@ -79,6 +94,8 @@ public class Platformer : Game
         _spriteBatch.Begin();
         _player.Draw(_spriteBatch);
         _ground.Draw(_spriteBatch);
+        foreach(Collider c in _platform01)
+            c.Draw(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);
