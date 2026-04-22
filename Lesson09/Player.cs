@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections;
 using System.IO.Pipes;
 using System;
+using System.Numerics;
 
 namespace Lesson09;
 
@@ -20,6 +21,7 @@ public class Player
     private Vector2 _position, _velocity, _dimensions;
     
     private Rectangle _gameBoundingBox;
+    internal Vector2 Velocity { get => _velocity; }
 
     internal Rectangle BoundingBox
     {
