@@ -134,6 +134,11 @@ public class Player
         }
     }
 
+    internal void MoveVertically(float direction)
+    {
+        _velocity.Y = direction * _Speed;
+    }
+
     internal void Stop()
     {
         _velocity.X = 0;

@@ -85,7 +85,8 @@ public class Collider
                     break;
 
                 case ColliderType.Bottom:
-
+                    if(player.Velocity.Y < 0)
+                        player.MoveVertically(0);
 
                     break;
 
