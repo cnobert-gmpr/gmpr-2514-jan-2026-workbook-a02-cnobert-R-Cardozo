@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Lesson09Platformer;
+public enum ColliderType { Top, Right, Bottom, Left }
 
 public class Collider
 {
-    public enum ColliderType { Top, Right, Bottom, Left }
     private ColliderType _type;
 
     private Vector2 _position, _dimensions;

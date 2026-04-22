@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using System.Numerics;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -15,6 +17,7 @@ public class Platformer : Game
     private Rectangle _gameBoundingBox = new Rectangle(0, 0, _WindowWidth, _WindowHeight);
 
     private Player _player;
+    private Collider _ground;
 
     public Platformer()
     {
@@ -31,6 +34,8 @@ public class Platformer : Game
  
         _player = new Player(new Vector2(50, 50), _gameBoundingBox);
         _player.Initialize();
+
+        _ground = new Collider(new Vector2(0, 300), new Vector2(_WindowWidth, 1), ColliderType.Top);
 
         base.Initialize();
     }
