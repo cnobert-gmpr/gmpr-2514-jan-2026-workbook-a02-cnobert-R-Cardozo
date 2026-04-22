@@ -67,7 +67,8 @@ public class Collider
             switch(_type)
             {
                 case ColliderType.Left:
-
+                    if(player.Velocity.X > 0)
+                        player.MoveHorizontally(0);
 
                     break;
 
@@ -78,7 +79,8 @@ public class Collider
                     break;
 
                 case ColliderType.Right:
-
+                    if(player.Velocity.X < 0)
+                        player.MoveHorizontally(0);
 
                     break;
 
