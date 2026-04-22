@@ -158,4 +158,10 @@ public class Player
     {
         _velocity.Y -= Platformer._Gravity * dt;
     }
+
+    internal void Jump()
+    {
+        if(_state != State.Jumping)
+            _velocity.Y = _JumpVelocity;
+    }
 }

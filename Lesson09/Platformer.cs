@@ -48,6 +48,7 @@ public class Platformer : Game
 
     protected override void Update(GameTime gameTime)
     {
+        #region input
         KeyboardState kbState = Keyboard.GetState();
         bool left = kbState.IsKeyDown(Keys.Left) || kbState.IsKeyDown(Keys.A);
         bool right = kbState.IsKeyDown(Keys.Right) || kbState.IsKeyDown(Keys.D);
@@ -60,6 +61,11 @@ public class Platformer : Game
 
         else
             _player.Stop();
+        
+        if(kbState.IsKeyDown(Keys.Space))
+            _player.Jump();
+        
+        #endregion
         
         _ground.ProcessCollision(_player, gameTime);
 
