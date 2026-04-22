@@ -1,3 +1,4 @@
+using System.Security;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -55,5 +56,38 @@ public class Collider
     internal void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(_pixel, BoundingBox, Color.white);
+    }
+
+    internal void ProcessCollision(Player player, GameTime gameTime)
+    {
+        float dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
+
+        if (BoundingBox.Intersects(player.BoundingBox))
+        {
+            switch(_type)
+            {
+                case ColliderType.Left:
+
+
+                    break;
+
+                case ColliderType.Top:
+                    player.Land(BoundingBox);
+                    player.StandOn(BoundingBox, dt);
+
+                    break;
+
+                case ColliderType.Right:
+
+
+                    break;
+
+                case ColliderType.Bottom:
+                    
+
+                    break;
+
+            }
+        }
     }
 }
