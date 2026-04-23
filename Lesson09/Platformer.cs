@@ -40,7 +40,11 @@ public class Platformer : Game
         _ground = new Collider(new Vector2(0, 300), new Vector2(_WindowWidth, 1), ColliderType.Top);
 
         _platforms = new List<Platform>();
-        _platforms.Add(new Platform(new Vector2 (100, 200), new Vector2(70, 10)));
+        _platforms.Add(new Platform(new Vector2 (125, 200), new Vector2(70, 10)));
+        _platforms.Add(new Platform(new Vector2 (60, 170), new Vector2(50, 10)));
+        _platforms.Add(new Platform(new Vector2 (225, 220), new Vector2(80, 10)));
+        _platforms.Add(new Platform(new Vector2 (355, 180), new Vector2(90, 10)));
+        _platforms.Add(new Platform(new Vector2 (230, 115), new Vector2(75, 10)));
 
         base.Initialize();
     }
@@ -92,7 +96,7 @@ public class Platformer : Game
         _spriteBatch.Begin();
         _player.Draw(_spriteBatch);
         _ground.Draw(_spriteBatch);
-        foreach(Platformer p in _platforms)
+        foreach(Platform p in _platforms)
             p.Draw(_spriteBatch);
         _spriteBatch.End();
 
