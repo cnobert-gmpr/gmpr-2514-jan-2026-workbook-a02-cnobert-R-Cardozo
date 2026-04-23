@@ -158,6 +158,8 @@ public class Player
             _position.Y = whatILandedOn.Top - _dimensions.Y + 1;
             _velocity.Y = 0;
             _state = State.Idle;
+            _animationCurrent = _animationIdle;
+            _animationCurrent.Reset();
         }
     }
 
