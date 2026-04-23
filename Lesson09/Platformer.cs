@@ -40,7 +40,7 @@ public class Platformer : Game
         _ground = new Collider(new Vector2(0, 300), new Vector2(_WindowWidth, 1), ColliderType.Top);
 
         _platforms = new List<Platform>();
-        _platforms.Add(new Platform(new Vector2 (125, 215), new Vector2(70, 10)));
+        _platforms.Add(new Platform(new Vector2 (140, 215), new Vector2(70, 10)));
         _platforms.Add(new Platform(new Vector2 (60, 185), new Vector2(50, 10)));
         _platforms.Add(new Platform(new Vector2 (225, 235), new Vector2(80, 10)));
         _platforms.Add(new Platform(new Vector2 (355, 195), new Vector2(90, 10)));
