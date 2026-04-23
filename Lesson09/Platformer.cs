@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Numerics;
 
 namespace Lesson09;
 
@@ -52,8 +51,8 @@ public class Platformer : Game
         _player.LoadContent(Content);
         _ground.LoadContent(GraphicsDevice);
 
-        foreach(Collider c in _platform01)
-            c.LoadContent(GraphicsDevice);
+        foreach(Platform p in _platforms)
+            p.LoadContent(GraphicsDevice);
     }
 
     protected override void Update(GameTime gameTime)
@@ -80,8 +79,8 @@ public class Platformer : Game
         
         _ground.ProcessCollision(_player, gameTime);
 
-        foreach(Collider c in _platform01)
-            c.ProcessCollision(_player, gameTime);
+        foreach(Platform p in _platforms)
+            p.ProcessCollisions(_player, gameTime);
 
         _player.Update(gameTime);
         base.Update(gameTime);
@@ -93,8 +92,8 @@ public class Platformer : Game
         _spriteBatch.Begin();
         _player.Draw(_spriteBatch);
         _ground.Draw(_spriteBatch);
-        foreach(Collider c in _platform01)
-            c.Draw(_spriteBatch);
+        foreach(Platformer p in _platforms)
+            p.Draw(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);
