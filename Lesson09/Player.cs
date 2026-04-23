@@ -157,7 +157,7 @@ public class Player
         {
             _position.Y = whatILandedOn.Top - _dimensions.Y + 1;
             _velocity.Y = 0;
-            _state = State.Walking;
+            _state = State.Idle;
         }
     }
 
