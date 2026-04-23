@@ -1,8 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Numerics;
 
 namespace Lesson09;
 
@@ -18,7 +20,7 @@ public class Platformer : Game
     private Player _player;
     private Collider _ground;
 
-    private Platform[] _platforms;
+    private List<Platform> _platforms;
 
     public Platformer()
     {
@@ -38,12 +40,8 @@ public class Platformer : Game
 
         _ground = new Collider(new Vector2(0, 300), new Vector2(_WindowWidth, 1), ColliderType.Top);
 
-        _platform01 = new Collider[4];
-
-        _platform01[0] = new Collider(new Vector2(160, 230), new Vector2(80, 1), ColliderType.Top);
-        _platform01[1] = new Collider(new Vector2(250, 230), new Vector2(1, 20), ColliderType.Right);
-        _platform01[2] = new Collider(new Vector2(160, 250), new Vector2(80, 1), ColliderType.Bottom);
-        _platform01[3] = new Collider(new Vector2(150, 230), new Vector2(1, 20), ColliderType.Left);
+        _platforms = new List<Platform>();
+        _platforms.Add(new Platform(new Vector2 (100, 200), new Vector2(70, 10)));
 
         base.Initialize();
     }
