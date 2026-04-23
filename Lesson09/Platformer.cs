@@ -18,7 +18,7 @@ public class Platformer : Game
     private Player _player;
     private Collider _ground;
 
-    private Collider[] _platform01;
+    private Platform[] _platforms;
 
     public Platformer()
     {
