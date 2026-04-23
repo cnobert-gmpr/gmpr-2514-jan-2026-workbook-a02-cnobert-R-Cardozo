@@ -17,9 +17,9 @@ public class Platform
         _dimensions = dimensions;
 
         _colliders = new Collider[4];
-        _colliders[0] = new Collider(new Vector2(position.X + 3, position.Y), new Vector2(dimensions.X - 6, 1), Collider.ColliderType.Top);
-        _colliders[1] = new Collider(new Vector2(position.X + dimensions.X - 1, position.Y + 1), new Vector2(1, dimensions.Y - 2), Collider.ColliderType.Right);
-        _colliders[2] = new Collider(new Vector2(position.X + 3, position.Y + dimensions.Y), new Vector2(dimensions.X - 6, 1), Collider.ColliderType.Bottom);
-        _colliders[3] = new Collider(new Vector2(position.X + 1, position.Y + 1), new Vector2(1, dimensions.Y - 2), Collider.ColliderType.Left);
+        _colliders[0] = new Collider(new Vector2(position.X + 3, position.Y), new Vector2(dimensions.X - 6, 1), ColliderType.Top);
+        _colliders[1] = new Collider(new Vector2(position.X + dimensions.X - 1, position.Y + 1), new Vector2(1, dimensions.Y - 2), ColliderType.Right);
+        _colliders[2] = new Collider(new Vector2(position.X + 3, position.Y + dimensions.Y), new Vector2(dimensions.X - 6, 1), ColliderType.Bottom);
+        _colliders[3] = new Collider(new Vector2(position.X + 1, position.Y + 1), new Vector2(1, dimensions.Y - 2), ColliderType.Left);
     }
 }
