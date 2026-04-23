@@ -10,7 +10,7 @@ namespace Lesson09;
 
 public class Player
 {
-    private const int _Speed = 150, _JumpVelocity = -130;
+    private const int _Speed = 170, _JumpVelocity = -120;
     private enum State { Idle, Walking, Jumping }
     private State _state;
     private bool _facingRight = true;
